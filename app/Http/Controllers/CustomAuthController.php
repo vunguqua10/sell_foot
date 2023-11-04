@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomAuthController extends Controller
 {
-
+    //login
     public function index()
     {
         return view('auth.login');
