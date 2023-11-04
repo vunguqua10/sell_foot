@@ -12,4 +12,9 @@ Homestead.yaml        # Ignore the Homestead.yaml file.
 npm-debug.log         # Ignore npm debug log files.
 yarn-error.log        # Ignore Yarn error log files.
 /.idea/               # Ignore the .idea directory (usually contains IDE-specific project settings).
-
+/storage/
+/.vagrant
+/public/images
+/public/webfonts/
+/public/images/
+/public/mix-manifest.json
