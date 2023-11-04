@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class CustomAuthController extends Controller
 {
-    //Login
+
+    //login
+
     public function index()
     {
         return view('auth.login');
