@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomAuthController extends Controller
 {
-
+    //Login
     public function index()
     {
         return view('auth.login');
@@ -31,7 +31,7 @@ class CustomAuthController extends Controller
   
         return redirect("login")->withSuccess('Login details are not valid');
     }
-   
+    //Register
     public function registration()
     {
         return view('auth.registration');
