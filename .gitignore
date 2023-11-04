@@ -10,7 +10,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 .env
-/public/uploads
-/public/fonts/
+/public/images
+/public/webfonts/
 /public/images/
 /public/mix-manifest.json
