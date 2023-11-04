@@ -1,15 +1,16 @@
-/node_modules          # Ignore the node_modules directory.
-/public/hot           # Ignore the public/hot directory.
-/public/storage       # Ignore the public/storage directory.
-/storage/*.key        # Ignore specific files in the storage directory with a .key extension.
-/vendor               # Ignore the vendor directory.
-.env                  # Ignore the .env file (contains sensitive environment configurations).
-.env.backup           # Ignore the .env.backup file (a backup of the .env file).
-*.log                 # Ignore log files.
-.phpunit.result.cache # Ignore PHPUnit result cache file.
-Homestead.json        # Ignore the Homestead.json file.
-Homestead.yaml        # Ignore the Homestead.yaml file.
-npm-debug.log         # Ignore npm debug log files.
-yarn-error.log        # Ignore Yarn error log files.
-/.idea/               # Ignore the .idea directory (usually contains IDE-specific project settings).
-
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/storage/
+/vendor
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+.env
+/public/uploads
+/public/fonts/
+/public/images/
+/public/mix-manifest.json
