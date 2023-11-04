@@ -2597,7 +2597,13 @@
 	padding: 12px 25px;
 	border: none;
 }
-
+.nav-link-logout {
+    /* border: 0.5px solid; */
+    color: #000;
+    margin-left: 50px;
+    font-size: 20px;
+    font-family: Arial;
+}
 
 
 
