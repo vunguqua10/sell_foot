@@ -56,14 +56,18 @@
                 <!-- End Header Navigation -->
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                <button CLASS="btn btn-primary" type="submit">
-                    <i CLASS="fas fa-search fa-sm"></i>
-                 </button>
-                <input type="text" name= "keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="" id="navbar-menu">
+                <form action="{{ route('products.search') }}" method="GET">
+                    
+                    <input type="text" name= "keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                     <div CLASS="input-group-append">
                         </div>
                      </div>
+                     <button CLASS="btn btn-primary" type="submit">
+                    <i CLASS="fas fa-search fa-sm"></i>
+                    </button>
+                     </form>
+
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         
                         <li class="nav-item active"><a class="nav-link" href="index.html">Trang chủ</a></li>
