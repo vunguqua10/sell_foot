@@ -15,7 +15,6 @@ class CustomAuthController extends Controller
     {
         return view('auth.login');
     }  
-      
     public function customLogin(Request $request)
     {
         $request->validate([
