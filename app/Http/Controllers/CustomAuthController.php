@@ -7,15 +7,17 @@ use Hash;
 use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CustomAuthController extends Controller
 {
+
     //login
+
     public function index()
     {
         return view('auth.login');
     }  
-      
     public function customLogin(Request $request)
     {
         $request->validate([
@@ -31,7 +33,7 @@ class CustomAuthController extends Controller
   
         return redirect("login")->withSuccess('Login details are not valid');
     }
-   
+    //Register
     public function registration()
     {
         return view('auth.registration');
