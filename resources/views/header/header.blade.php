@@ -57,7 +57,7 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="" id="navbar-menu">
-                <form action="{{ route('products.search') }}" method="GET">
+                <form action="{{ route('searchproduct') }}" method="GET">
                     
                     <input type="text" name= "keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                     <div CLASS="input-group-append">
