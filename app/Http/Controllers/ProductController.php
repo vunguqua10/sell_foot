@@ -67,7 +67,7 @@ class ProductController extends Controller
         $path = 'uploads';
         $fileName = $file->getClientOriginalName();
         $file->move($path, $fileName);
-        
+
         $updateData = DB::table('products')->where('id', $request->id)->update([
             'name' => $request->name,
             'description' => $request->description,
@@ -82,7 +82,7 @@ class ProductController extends Controller
         //Thực hiện chuyển trang
         return redirect('listproduct');
     }
-    
+
 
     public function deleteProduct($id)
     {
@@ -101,6 +101,6 @@ class ProductController extends Controller
     {
         $keyword = $request->keyword;
         $products = Product::where('name', 'LIKE', '%' . $keyword . '%')->paginate(4);
-        return view('shop/shop', compact('products'));
+        return view('shop.shop', compact('products'));
     }
 }

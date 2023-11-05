@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
@@ -18,10 +19,11 @@ use App\Http\Controllers\ProductController;
 
 
 Auth::routes();
-
-    Route::get('/index', function () {
-        return view('home.index');
-    });
+//Home
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('about_us',[HomeController::class,'aboutUs'])->name('about_us');
+Route::get('/shop',[HomeController::class,'shop'])->name('shop');
+Route::get('shop_detail',[HomeController::class,'shop_detail'])->name('shop_detail');
 
 // Product
 Route::get('listproduct', [ProductController::class, 'listProduct'])->name('listproduct');
@@ -33,8 +35,6 @@ Route::get('deleteproduct/id{id}', [ProductController::class, 'deleteProduct'])-
 Route::get('searchproduct', [ProductController::class, 'searchProduct'])->name('searchproduct');
 //--------------
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 //Layout
 Route::get('/detail', FUNCTION () {
@@ -43,11 +43,11 @@ Route::get('/detail', FUNCTION () {
 
 
 //Login, logout, register
-Route::get('dashboard', [CustomAuthController::class, 'dashboard']); 
+Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
-Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
-Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 

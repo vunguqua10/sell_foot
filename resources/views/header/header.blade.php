@@ -58,7 +58,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="" id="navbar-menu">
                 <form action="{{ route('searchproduct')}}" method="GET">
-                    
+
                     <input type="text" name= "keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                     <div CLASS="input-group-append">
                         </div>
@@ -68,13 +68,13 @@
                     </button>
                      </form>
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        
-                        <li class="nav-item active"><a class="nav-link" href="index">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+
+                        <li class="nav-item active"><a class="nav-link" href="{{route('home')}}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('about_us')}}">About Us</a></li>
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                             <ul class="dropdown-menu">
-                                <li><a href="shop.html">Sidebar Shop</a></li>
+                                <li><a href="{{route('shop')}}">Sidebar Shop</a></li>
                                 <li><a href="shop-detail.html">Shop Detail</a></li>
                                 <li><a href="cart.html">Cart</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
@@ -87,11 +87,11 @@
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
-                
+
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-                        
+
                         <li class="side-menu">
                             <a href="#">
                                 <i class="fa fa-shopping-bag"></i>
