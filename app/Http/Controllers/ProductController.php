@@ -23,13 +23,11 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'id_color' => 'required',
             'price' => 'required',
             'instock' => 'required',
             'sold' => 'required',
             'id_category' => 'required',
             'photo' => 'required',
-            'id_size' => 'required',
         ]);
         $file = $request->file('photo');
         $path = 'uploads';
@@ -40,19 +38,16 @@ class ProductController extends Controller
         $product->save();
         return redirect("listproduct");
     }
-
     public function createProduct(array $data)
     {
         return Product::create([
             'name' => $data['name'],
             'description' => $data['description'],
-            'id_color' => $data['id_color'],
             'price' => $data['price'],
             'instock' => $data['instock'],
             'sold' => $data['sold'],
             'id_category' => $data['id_category'],
             'photo' => $data['photo'],
-            'id_size' => $data['id_size'],
         ]);
     }
 
@@ -72,13 +67,11 @@ class ProductController extends Controller
         $updateData = DB::table('products')->where('id', $request->id)->update([
             'name' => $request->name,
             'description' => $request->description,
-            'id_color' => $request->id_color,
             'price' => $request->price,
             'instock' => $request->instock,
             'sold' => $request->sold,
             'id_category' => $request->id_category,
             'photo' => $fileName,
-            'id_size' => $request->id_size,
         ]);
         //Thực hiện chuyển trang
         return redirect('listproduct');
@@ -102,6 +95,6 @@ class ProductController extends Controller
     {
         $keyword = $request->keyword;
         $products = Product::where('name', 'LIKE', '%' . $keyword . '%')->paginate(4);
-        return view('/home/index', compact('products'));
+        return view('shop/shop', compact('products'));
     }
 }
