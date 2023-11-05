@@ -2597,17 +2597,17 @@
 	padding: 12px 25px;
 	border: none;
 }
-.nav-link-logout {
-    /* border: 0.5px solid; */
+.navbar-nav .nav-item .nav-link-logout {
     color: #000;
     margin-left: 50px;
     font-size: 20px;
     font-family: Arial;
 }
-.hot {
+.categories-shop .container .title-all .hot {
     text-align: center;
     color: #000;
 }
+
 
 
 
