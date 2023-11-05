@@ -1,16 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -25,16 +22,15 @@ class HomeController extends Controller
     {
         return view('home.index');
     }
+    public function getProductsForHome()
+    {
+        // $hotproduct = DB::table('products')->orderBy('created_at', 'asc')->limit(4)->get();
+        // $bestseller = DB::table('products')->orderBy('sold', 'desc')->limit(4)->get();
+        // return view('home.index', compact('hotproduct', 'bestseller'));
 
-    public function aboutUs(){
-        return view('about.about');
-    }
+        $hotproduct = DB::table('products')->orderBy('created_at', 'asc')->limit(4)->get();
 
-    public function shop(){
-        return view('shop.shop');
-    }
+        return view('home.index', compact('hotproduct'));
 
-    public function shop_detail(){
-        return view('shop_detail.shop_detail');
     }
 }
