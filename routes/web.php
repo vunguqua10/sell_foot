@@ -54,7 +54,7 @@ Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout')
 
 
 //Home
-Route::get('/index', [HomeController::class, 'getProductsForHome'])->name('index');
+Route::get('/home', [HomeController::class, 'getProductsForHome'])->name('home');
 
 //URL trong phạm vi 'admin'.
 Route::prefix('admin')->group(function () {
