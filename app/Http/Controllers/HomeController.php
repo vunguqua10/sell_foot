@@ -32,11 +32,12 @@ class HomeController extends Controller
     }
     public function shopDetail()
     {
-        return view('cart.cart');
+        return view('shop_detail.shop-detail');
     }
     public function cart()
     {
-        return view('shop_detail.shop-detail');
+        return view('cart.cart');
+
     }
 
     public function checkOut()
