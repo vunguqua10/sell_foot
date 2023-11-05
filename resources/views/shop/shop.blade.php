@@ -74,9 +74,9 @@
 
                                                     <h5>{{$product->price}}đ</h5>
 
+
                                                 </div>
                                             </div>
-                                            
                                         </div>
                                         @endforeach
                                     </div>
