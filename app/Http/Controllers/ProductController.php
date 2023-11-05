@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Hash;
@@ -94,7 +93,7 @@ class ProductController extends Controller
     public function searchProduct(Request $request)
     {
         $keyword = $request->keyword;
-        $products = Product::where('name', 'LIKE', '%' . $keyword . '%')->paginate(4);
+        $products = Product::where('name', 'LIKE', '%' . $keyword . '%')->paginate(3);
         return view('shop/shop', compact('products'));
     }
 }

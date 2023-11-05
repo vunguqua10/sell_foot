@@ -51,7 +51,7 @@
         <div class="container">
         <div class="col-lg-12">
                     <div class="title-all text-center">
-                        <div class="hot"><h1>SẢN PHẨM MỚI !!</h1></div>
+                        <div><h1 class="hot">SẢN PHẨM MỚI !!</h1></div>
                     </div>
                 </div>
             <div class="row">
@@ -91,7 +91,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="title-all text-center">
-                        <h1>SẢN PHẨM GỢI Ý !!</h1>
+                        <h1 class="hot">SẢN PHẨM GỢI Ý !!</h1>
                     </div>
                 </div>
             </div>
