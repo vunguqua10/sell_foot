@@ -75,15 +75,15 @@
                             <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{route('shop')}}">Sidebar Shop</a></li>
-                                <li><a href="shop-detail.html">Shop Detail</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
+                                <li><a href="{{route('shop_detail')}}">Shop Detail</a></li>
+                                <li><a href="{{route('cart')}}">Cart</a></li>
+                                <li><a href="{{route('check_out')}}">Checkout</a></li>
+                                <li><a href="{{route('my_account')}}">My Account</a></li>
+                                <li><a href="{{route('wishlist')}}">Wishlist</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('gallery')}}">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('contact_us')}}">Contact Us</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
