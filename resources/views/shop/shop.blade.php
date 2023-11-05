@@ -74,10 +74,10 @@
                                                     <h5>{{$product->price}}đ</h5>
                                                 </div>
                                             </div>
-                                            
                                         </div>
-                                        @endforeach;
+                                        @endforeach
                                     </div>
+                                    {{ $products->links('custompagination') }}
                                 </div>
                                 
                                 <div role="tabpanel" class="tab-pane fade" id="list-view">
@@ -97,7 +97,6 @@
                                                                 <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                                                 <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                                             </ul>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -110,9 +109,9 @@
                                                     <a class="btn hvr-hover" href="#">Add to Cart</a>
                                                 </div>
                                             </div>
-                                            @endforeach;
+                                            @endforeach
                                         </div>
-                                        
+                                        {{ $products->links('custompagination') }}
                                     </div>
                                 </div>
                             </div>
