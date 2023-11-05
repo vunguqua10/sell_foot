@@ -29,8 +29,8 @@ class HomeController extends Controller
         // return view('home.index', compact('hotproduct', 'bestseller'));
 
         $hotproduct = DB::table('products')->orderBy('created_at', 'asc')->limit(4)->get();
-        
-        return view('home.index', compact('hotproduct'));
-        
+        $bestseller = DB::table('products')->orderBy('sold', 'desc')->limit(4)->get();
+        $topfeatured = DB::table('products')->orderBy('id', 'desc')->limit(4)->get();
+        return view('home.index', compact('hotproduct', 'bestseller', 'topfeatured'));
     }
 }
