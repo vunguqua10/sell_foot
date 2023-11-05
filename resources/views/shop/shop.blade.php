@@ -71,9 +71,12 @@
                                                 </div>
                                                 <div class="why-text">
                                                     <h4>{{$product->name}}</h4>
+
                                                     <h5>{{$product->price}}đ</h5>
+
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                         @endforeach
                                     </div>

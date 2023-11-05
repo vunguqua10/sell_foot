@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,7 +52,27 @@ Route::get('registration', [CustomAuthController::class, 'registration'])->name(
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
+
 //Home
 Route::get('/index', [HomeController::class, 'getProductsForHome'])->name('index');
+
+//URL trong phạm vi 'admin'.
+Route::prefix('admin')->group(function () {
+    //trang home
+    Route::get('/',[DashBoardController::class,'index'])->name('admin.index');
+    //category
+    Route::get('/listcategory',[CategoryController::class,'listCategory'])->name('category.listCategory');
+    Route::get('/addCategory',[CategoryController::class,'addCategory'])->name('category.addCategory');
+    Route::post('/addCategory',[CategoryController::class,'post_addCategory'])->name('category.addCategory');
+    Route::get('/editCategory-{id}',[CategoryController::class,'editCategory'])->name('category.editCategory');
+    Route::post('/editCategory-{id}',[CategoryController::class,'post_editCategory'])->name('category.editCategory');
+    Route::get('/delCategory-{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
+
+    //product
+    Route::get('/listProduct',[ProductController::class,'listProduct'])->name('product.listProduct');
+    Route::get('/addProduct',[ProductController::class,'addProduct'])->name('product.addProduct');
+    Route::post('/addProduct',[ProductController::class,'post_addProduct'])->name('product.addProduct');
+});
+
 
 
