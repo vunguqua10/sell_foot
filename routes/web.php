@@ -23,8 +23,14 @@ Auth::routes();
 //Home
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('about_us',[HomeController::class,'aboutUs'])->name('about_us');
-Route::get('/shop',[HomeController::class,'shop'])->name('shop');
-Route::get('shop_detail',[HomeController::class,'shop_detail'])->name('shop_detail');
+Route::get('shop',[HomeController::class,'shop'])->name('shop');
+Route::get('shop_detail',[HomeController::class,'shopDetail'])->name('shop_detail');
+Route::get('cart',[HomeController::class,'cart'])->name('cart');
+Route::get('checkout',[HomeController::class,'checkOut'])->name('check_out');
+Route::get('my_account',[HomeController::class,'myAccount'])->name('my_account');
+Route::get('wishlist',[HomeController::class,'wishList'])->name('wishlist');
+Route::get('gallery',[HomeController::class,'gallery'])->name('gallery');
+Route::get('contact_us',[HomeController::class,'contactUs'])->name('contact_us');
 
 // Product
 Route::get('listproduct', [ProductController::class, 'listProduct'])->name('listproduct');

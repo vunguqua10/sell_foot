@@ -22,6 +22,47 @@ class HomeController extends Controller
     {
         return view('home.index');
     }
+    public function aboutUs()
+    {
+        return view('about.about');
+    }
+    public function shop()
+    {
+        return view('shop.shop');
+    }
+    public function shopDetail()
+    {
+        return view('cart.cart');
+    }
+    public function cart()
+    {
+        return view('shop_detail.shop-detail');
+    }
+
+    public function checkOut()
+    {
+        return view('check_out.checkout');
+    }
+
+    public function myAccount()
+    {
+        return view('my_account.my-account');
+    }
+
+    public function gallery()
+    {
+        return view('gallery.gallery');
+    }
+
+    public function wishList()
+    {
+        return view('wishlist.wishlist');
+    }
+
+    public function contactUs()
+    {
+        return view('contact-us.contact-us');
+    }
     public function getProductsForHome()
     {
         // $hotproduct = DB::table('products')->orderBy('created_at', 'asc')->limit(4)->get();
