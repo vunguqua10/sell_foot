@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 
 /*
@@ -80,5 +81,13 @@ Route::prefix('admin')->group(function () {
     Route::post('/addProduct',[ProductController::class,'post_addProduct'])->name('product.addProduct');
 });
 
+//Cart
+Route::get('/cart', [CartController::class, 'getAllProductsInCart'])->name('cart');
+Route::get('add-to-cart/{id}', [CartController::class, 'addProductToCart'])->name('add-to-cart');
+Route::get('remove-from-cart/{id}', [CartController::class, 'removeProductFromCart'])->name('remove-from-cart');
+Route::get('clear-cart', [CartController::class, 'clearCart'])->name('clear-cart');
+Route::get('update-cart', [CartController::class, 'updateCart'])->name('update-cart');
+//--------
+Route::get('useVoucher', [CartController::class, 'useVoucher'])->name('useVoucher');
 
 
