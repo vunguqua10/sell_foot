@@ -48,6 +48,7 @@ class CartController extends Controller
         }
         return redirect('login');
     }
+    //Xoa san pham trong gio hang
     public function removeProductFromCart($id_product)
     {
         if (Auth::check()) {
