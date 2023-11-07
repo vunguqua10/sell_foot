@@ -31,9 +31,9 @@
               <div class="card-body">
                 <div class="form-group">
                   <label for="inputName">Nhập tên danh mục</label>
-                  <input type="text" name="type_name" id="inputName" class="form-control" placeholder="Nhập tên loại">
-                  @if($errors->has('type_name'))
-                    {{$errors->first('type_name') }}
+                  <input type="text" name="cate_name" id="inputName" class="form-control" placeholder="Nhập tên loại">
+                  @if($errors->has('cate_name'))
+                    {{$errors->first('cate_name') }}
                   @endif
                 </div>
               </div>

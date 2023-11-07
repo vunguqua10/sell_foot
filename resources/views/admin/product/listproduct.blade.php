@@ -34,10 +34,10 @@
         </thead>
 
         <tbody>
-          @foreach($data as $product)
+          @foreach($products as $product)
           <tr>
             <td>{{$product->name}}</td>
-            <td><img src="{{URL::asset('uploads')}}/{{$product->photo}}" alt="" width="50px" height="50px"></td>
+            <td><img src="{{URL::asset('images')}}/{{$product->photo}}" alt="" width="50px" height="50px"></td>
             <td>{{$product->description}}</td>
             <td>{{$product->price}}</td>
             <td>{{$product->sold}}</td>

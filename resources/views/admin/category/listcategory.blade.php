@@ -1,6 +1,9 @@
 @extends('admin.layout.master')
 @section('title','Trang danh sach san pham')
 @section('main-content')
+@php
+    error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+@endphp
 <?php $page = 'protypes';?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -49,11 +52,11 @@
                   </tr>
               </thead>
               <tbody>
-                  @foreach($data as $category)
+                  @foreach($categories as $category)
                   <tr>
                       <td>{{ $category -> id }}</td>
                       <td>
-                          <a>{{ $category -> type_name }}</a>
+                          <a>{{ $category -> cate_name }}</a>
                       </td>
                       <td class="project-actions">
                           <a class="btn btn-info btn-sm" href="{{ route('category.editCategory',['id' => $category->id ]) }}">
