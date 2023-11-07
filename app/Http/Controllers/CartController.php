@@ -75,23 +75,35 @@ class CartController extends Controller
             //$str = 'quantity_'+$productInCart->id;
             DB::table('cart_details')->where([['id_user', '=', $id_user], ['id_product', '=', $productInCart->id]])->update(['quantity' => $request->quantity]);
         }
-        dd($request);
-        return redirect('home');
+        
+        return redirect('/cart');
     }
     public function increaseQuantity()
     {
     }
     public function useVoucher(Request $request)
     {
-        $voucher = Voucher::where('code_voucher', '=', $request->voucher)->get();
-        $id_user = Auth::user()->id;
-        $productsInCart = DB::table('cart_details')->join('products', 'products.id', '=', 'cart_details.id_product')->where('cart_details.id_user', '=', $id_user)->select('*', DB::raw('cart_details.quantity * products.price as totalPrice'))->get();
-        if (!($voucher->isEmpty())) {
-            $reduce = $voucher[0]->reduce;
-            $total = $request->total;
-            $total = $total * ($reduce / 100);
-            return view('cartvoucher', ['productsInCart' => $productsInCart, 'voucher' => $voucher, 'total' => $total]);
+        // $voucher = DB::table('code_voucher', '=', $request->voucher)->get();
+        // $id_user = Auth::user()->id;
+        // $productsInCart = DB::table('cart_details')->join('products', 'products.id', '=', 'cart_details.id_product')->where('cart_details.id_user', '=', $id_user)->select('*', DB::raw('cart_details.quantity * products.price as totalPrice'))->get();
+        // if (!($voucher->isEmpty())) {
+        //     $reduce = $voucher[0]->reduce;
+        //     $total = $request->total;
+        //     $total = $total * ($reduce / 100);
+        //     return view('cart/cart', ['productsInCart' => $productsCart, 'voucher' => $voucher, 'total' => $total]);
+        // }
+        // return view('cart/cartvoucher', compact('productsInCart'));
+        $voucherCode = $request->input('voucher');
+        $total = $request->input('total');
+        
+        // Lấy thông tin voucher từ cơ sở dữ liệu
+        $voucher = DB::table('vouchers')->where('code_voucher', $voucherCode)->first();
+        
+        if ($voucher) {
+            // Áp dụng giảm giá từ voucher vào total
+            $total = $total * (1 - ($voucher->reduce / 100));
         }
-        return view('cart', compact('productsInCart'));
+        // Truyền giá trị total mới qua biến trong URL
+        return redirect()->route('cart', ['total' => $total]);
     }
 }
