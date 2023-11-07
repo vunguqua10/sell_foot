@@ -74,8 +74,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/listcategory',[CategoryController::class,'listCategory'])->name('category.listCategory');
     Route::get('/addCategory',[CategoryController::class,'addCategory'])->name('category.addCategory');
     Route::post('/addCategory',[CategoryController::class,'post_addCategory'])->name('category.addCategory');
-    Route::get('/editCategory-{id}',[CategoryController::class,'editCategory'])->name('category.editCategory');
-    Route::post('/editCategory-{id}',[CategoryController::class,'post_editCategory'])->name('category.editCategory');
+    Route::get('getdataedtcategory/id{id}', [CategoryController::class, 'editCategory'])->name('getdataedtcategory');
+    Route::post('editcategory',[CategoryController::class,'updateCategory'])->name('editcategory');
     Route::get('/delCategory-{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
 
     //product

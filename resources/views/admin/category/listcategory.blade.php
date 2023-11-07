@@ -59,7 +59,7 @@
                           <a>{{ $category -> cate_name }}</a>
                       </td>
                       <td class="project-actions">
-                          <a class="btn btn-info btn-sm" href="{{ route('category.editCategory',['id' => $category->id ]) }}">
+                          <a class="btn btn-info btn-sm" href="{{route('getdataedtcategory',$category->id)}}">
                              
                             <i class="fas fa-pencil-alt">
                                 
