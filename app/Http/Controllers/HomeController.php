@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Product;
 use DB;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class HomeController extends Controller
     }
     public function shop()
     {
-        return view('shop.shop');
+        $products = Product::paginate(6);
+        return view('shop.shop', ['products' => $products]);
     }
     public function shopDetail()
     {
