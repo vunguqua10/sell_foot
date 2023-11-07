@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomProductsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -92,3 +93,6 @@ Route::get('update-cart', [CartController::class, 'updateCart'])->name('update-c
 Route::get('useVoucher', [CartController::class, 'useVoucher'])->name('useVoucher');
 
 
+//ViewDetail
+
+Route::get('view-detail/{id}', [CustomProductsController::class,'viewDetailProducts'])->name('show_detail');
