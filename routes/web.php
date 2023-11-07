@@ -4,11 +4,12 @@ use App\Http\Controllers\CustomProductsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\VoucherController;
-
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,7 @@ Route::get('searchproduct', [ProductController::class, 'searchProduct'])->name('
 Route::get('getproduct', [ProductController::class, 'getProduct'])->name('getproduct');
 //--------------
 
+//Product Admin
 
 //Layout
 Route::get('/detail', FUNCTION () {
@@ -73,8 +75,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/listcategory',[CategoryController::class,'listCategory'])->name('category.listCategory');
     Route::get('/addCategory',[CategoryController::class,'addCategory'])->name('category.addCategory');
     Route::post('/addCategory',[CategoryController::class,'post_addCategory'])->name('category.addCategory');
-    Route::get('/editCategory-{id}',[CategoryController::class,'editCategory'])->name('category.editCategory');
-    Route::post('/editCategory-{id}',[CategoryController::class,'post_editCategory'])->name('category.editCategory');
+    Route::get('getdataedtcategory/id{id}', [CategoryController::class, 'editCategory'])->name('getdataedtcategory');
+    Route::post('editcategory',[CategoryController::class,'updateCategory'])->name('editcategory');
     Route::get('/delCategory-{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
 
     //product

@@ -23,7 +23,7 @@
 
     <!-- Main content -->
     <section class="content">
-    <form action="" method="POST" roles="form" enctype="multipart/form-data">      
+    <form action="{{route('editcategory') }}" method="POST" roles="form" enctype="multipart/form-data">      
         @csrf
       <div class="row p-1">
         <div class="col-md-12">
@@ -31,12 +31,12 @@
             <div class="card-body">
               <div class="form-group">
                 <div class="form-group">
-                <input type="hidden" name="id" value="{{ $typebyid-> id }}">
+                <input type="hidden" name="id" value="{{$getDataCategoryById[0]->id}}">
                 </div>
                 <label for="inputName">Tên Loại</label>
-                <input type="text" name="type_name" id="inputName" class="form-control" placeholder="Nhập tên loại"  value= "{{ $typebyid->type_name }}" >
-                @if($errors->has('type_name'))
-                    {{$errors->first('type_name') }}
+                <input type="text" name="cate_name" id="inputName" class="form-control" placeholder="Nhập tên loại"  value= "{{$getDataCategoryById[0]->cate_name}}" >
+                @if($errors->has('cate_name'))
+                    {{$errors->first('cate_name') }}
                 @endif
               </div>
             </div>

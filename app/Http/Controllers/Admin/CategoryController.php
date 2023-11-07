@@ -12,8 +12,8 @@ class CategoryController extends Controller
     public function listCategory()
     {
         
-        $categories = DB::table('categories')->paginate(4);
-        return view('admin.category.listcategory', ['data'=>$categories]);
+        $categories = Category::paginate(4);
+        return view('admin.category.listcategory', compact('categories'));
     }
      //them loai san pham
      public function addCategory()
@@ -23,32 +23,41 @@ class CategoryController extends Controller
      //post loai san pham
      function post_addCategory(Request $request){
         $this->validate($request, [
-            'type_name' => 'required|unique:categories,type_name'
+            'cate_name' => 'required|unique:categories,cate_name'
         ], [
-            'type_name.required' => 'Tên danh mục không được để trống',
-            'type_name.unique' => 'Tên danh mục đã có trong CSDL'
+            'cate_name.required' => 'Tên danh mục không được để trống',
+            'cate_name.unique' => 'Tên danh mục đã có trong CSDL'
         ]);
     
         $categories = new Category();
-        $categories->type_name = $request->input('type_name');
+        $categories->cate_name = $request->input('cate_name');
         $categories->save();
     
         return redirect()->route('category.listCategory')->with('success', 'Thêm danh mục thành công');
     }
+    
     //Sửa loại sản phẩm:
     function editCategory($id)
     {
-       $typebyid = Category::find($id);
-       return view('admin.category.listCategory',['typebyid'=>$typebyid]);
+        $getData = DB::table('categories')->select('*')->where('id', $id)->get();
+        return view('admin.category.editcategory')->with('getDataCategoryById', $getData);
     }
     //Post sửa loại sản phâm lên:
-    function post_edittype($id,Request $request){
-        $this -> validate($request,[
-            'type_name' => 'required'
-        ],['type_name.required' => 'Tên danh mục không được để trống']);
-        $request -> offsetUnset('_token');
-       Category::where(['id'=>$id])->update($request->all());
-        return redirect()->route('admin.category.listCategory')->with('success','Sửa danh mục thành công');
+    public function updateCategory(Request $request)
+    { 
+    $validatedData = $request->validate([
+        'cate_name' => 'required',
+    ]);
+
+    $category = Category::find($request->id);
+    if (!$category) {
+        // Xử lý khi không tìm thấy danh mục
+    }
+
+    $category->cate_name = $request->cate_name;
+    $category->save();
+
+    return redirect()->route('category.listCategory');
     }
     //xóa loại sản phẩm:
     // function delCategory($id)

@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function registrationProduct()
     {
-        return view('admin.content.addproduct');
+        return view('admin.product.addproduct');
     }
 
     public function customProduct(Request $request)
@@ -53,7 +53,7 @@ class ProductController extends Controller
     public function getDataEdit($id)
     {
         $getData = DB::table('products')->select('*')->where('id', $id)->get();
-        return view('admin.content.editproduct')->with('getDataProductById', $getData);
+        return view('admin.product.editproduct')->with('getDataProductById', $getData);
     }
 
     public function updateProduct(Request $request)
@@ -87,7 +87,7 @@ class ProductController extends Controller
     public function listProduct()
     {
         $products = DB::table('products')->paginate(4);
-        return view('admin.content.listproduct', compact('products'));
+        return view('admin.product.listproduct', compact('products'));
     }
 
     public function searchProduct(Request $request)

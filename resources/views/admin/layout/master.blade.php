@@ -93,6 +93,7 @@
                   <p>Them loai san pham</p>
                 </a>
               </li>
+              
               <li class="nav-item">
                 <a href="{{route('product.listProduct')}}" class="nav-link">
                   <i class="far nav-icon"></i>
