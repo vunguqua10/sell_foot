@@ -10,14 +10,14 @@
                         <form method="POST" action="{{ route('login.custom') }}">
                             @csrf
                             <div class="form-group mb-3">
-                                <input type="text" placeholder="Name" id="name" class="form-control" name="name" required
+                                <input type="text" placeholder="Name" id="name" class="form-control" name="name" required value='htrong2003'
                                     autofocus>
                                 @if ($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
                             <div class="form-group mb-3">
-                                <input type="password" placeholder="Password" id="password" class="form-control" name="password" required>
+                                <input type="password" placeholder="Password" id="password" class="form-control" name="password" required value='123456'
                                 @if ($errors->has('password'))
                                 <span class="text-danger">{{ $errors->first('password') }}</span>
                                 @endif

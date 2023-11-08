@@ -77,7 +77,7 @@ Route::prefix('admin')->group(function () {
     Route::get('getdataedtcategory/id{id}', [CategoryController::class, 'editCategory'])->name('getdataedtcategory');
     Route::post('editcategory',[CategoryController::class,'updateCategory'])->name('editcategory');
     Route::get('/delCategory-{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
-
+    Route::get('/getcategories', [CategoryController::class, 'getCategories'])->name('getcategories');
     //product
     Route::get('/listProduct',[ProductController::class,'listProduct'])->name('product.listProduct');
     Route::get('/addProduct',[ProductController::class,'addProduct'])->name('product.addProduct');
@@ -92,5 +92,14 @@ Route::get('clear-cart', [CartController::class, 'clearCart'])->name('clear-cart
 Route::get('update-cart', [CartController::class, 'updateCart'])->name('update-cart');
 //--------
 Route::get('useVoucher', [CartController::class, 'useVoucher'])->name('useVoucher');
+
+//Voucher
+Route::get('/addvoucher', [VoucherController::class, 'addVoucher'])->name('addvoucher');
+Route::post('customvoucher', [VoucherController::class, 'customVoucher'])->name('customvoucher.custom');
+Route::get('listvoucher', [VoucherController::class, 'listVoucher'])->name('listvoucher');
+Route::get('getdataedtvoucher/id{id}', [VoucherController::class, 'getDataEditVoucher'])->name('getdataedtvoucher');
+Route::post('editvoucher', [VoucherController::class, 'updateVoucher'])->name('editvoucher');
+Route::get('deletevoucher/id{id}', [VoucherController::class, 'deleteVoucher'])->name('deletevoucher');
+Route::get('searchvoucher', [VoucherController::class, 'searchVoucher'])->name('searchvoucher');
 
 

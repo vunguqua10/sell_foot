@@ -103,17 +103,23 @@
               <li class="nav-item">
                 <a href="{{route('product.addProduct')}}" class="nav-link">
                   <i class="far nav-icon"></i>
-                  <p>ADD Category</p>
+                  <p>ADD Product</p>
                 </a>
               </li>
               <li class="nav-item">
-                {{-- <a href="{{route('product.addProduct')}}" class="nav-link"> --}}
+                <a href="{{route('listvoucher')}}" class="nav-link">
                   <i class="far nav-icon"></i>
-                  <p>Danh sach khach hang</p>
+                  <p>Voucher</p>
                 </a>
               </li>
               <li class="nav-item">
-                {{-- <a href="{{route('product.addProduct')}}" class="nav-link"> --}}
+                <a href="{{route('addvoucher')}}" class="nav-link">
+                  <i class="far nav-icon"></i>
+                  <p>ADD Voucher</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                 <a href="#" class="nav-link"> 
                   <i class="far nav-icon"></i>
                   <p>Danh sach don hang</p>
                 </a>
