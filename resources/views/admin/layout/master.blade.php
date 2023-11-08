@@ -84,26 +84,26 @@
               <li class="nav-item">
                 <a href="{{route('category.listCategory')}}" class="nav-link ">
                   <i class="far  nav-icon"></i>
-                  <p>Loai san pham</p>
+                  <p>All Category</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('category.addCategory')}}" class="nav-link">
                   <i class="far  nav-icon"></i>
-                  <p>Them loai san pham</p>
+                  <p>ADD Category</p>
                 </a>
               </li>
               
               <li class="nav-item">
                 <a href="{{route('product.listProduct')}}" class="nav-link">
                   <i class="far nav-icon"></i>
-                  <p>San pham</p>
+                  <p>All Product</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('product.addProduct')}}" class="nav-link">
                   <i class="far nav-icon"></i>
-                  <p>Them san pham</p>
+                  <p>ADD Category</p>
                 </a>
               </li>
               <li class="nav-item">

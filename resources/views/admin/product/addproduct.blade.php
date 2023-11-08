@@ -10,7 +10,7 @@
                 <div class="card">
                     <h3 class="card-header text-center">ADD PRODUCT</h3>
                     <div class="card-body">
-                        <form action="{{ route('product.addProduct') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('registerproduct.custom') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Name" id="name" class="form-control" name="name" required autofocus>
@@ -23,6 +23,9 @@
                             </div>
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Price" id="price" class="form-control" name="price" required autofocus>
+                            </div>
+                            <div class="form-group mb-3">
+                                <input type="text" placeholder="Instock" id="instock" class="form-control" name="instock" required autofocus>
                             </div>
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Sold" id="sold" class="form-control" name="sold" required autofocus>

@@ -17,7 +17,7 @@
 <div CLASS="card shadow mb-12">
   <div CLASS="card-header py-3">
     <h6 CLASS="m-0 font-weight-bold text-primary">PRODUCT </h6>
-    <h6><a href="{{route('product.addProduct')}}" class="btn btn-primary">ADD PRODUCT</a></h6>
+    <h6><a href="{{route('addproduct')}}" class="btn btn-primary">ADD PRODUCT</a></h6>
   </div>
   <div CLASS="card-body">
     <div CLASS="table-responsive">
@@ -50,6 +50,7 @@
           @endforeach
         </tbody>
       </table>
+      {{ $products->links('custompagination') }}
     </div>
   </div>
 </div>

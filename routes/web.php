@@ -37,7 +37,7 @@ Route::get('contact_us',[HomeController::class,'contactUs'])->name('contact_us')
 
 // Product
 Route::get('listproduct', [ProductController::class, 'listProduct'])->name('listproduct');
-Route::get('addproduct', [ProductController::class, 'registrationProduct'])->name('addproduct');
+Route::get('addproduct', [ProductController::class, 'addProduct'])->name('addproduct');
 Route::post('customproduct', [ProductController::class, 'customProduct'])->name('registerproduct.custom');
 Route::get('getdataedt/id{id}', [ProductController::class, 'getDataEdit'])->name('getdataedt');
 Route::post('editproduct', [ProductController::class, 'updateProduct'])->name('editproduct');

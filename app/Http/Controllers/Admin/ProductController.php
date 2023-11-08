@@ -44,7 +44,7 @@ class ProductController extends Controller
         $product->photo = $fileName;
         $product->save();
         Product::create($request->all());
-        return redirect()->route('product.listProduct')->with('success','Thêm sản phẩm thành công');;
+        return redirect()->route('product.listproduct')->with('success','Thêm sản phẩm thành công');;
     }
 
 }
