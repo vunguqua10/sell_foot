@@ -23,7 +23,8 @@ class ProductController extends Controller
         $id = DB::table('categories')->pluck('type_name', 'id');
         return view('admin.product.addproduct', ['categories' => $categories, 'id' => $id]);
     }
-
+   
+    
     //Post thêm sản phâm lên:
     function post_addProduct(Request $request){
         $request->validate([
@@ -45,6 +46,12 @@ class ProductController extends Controller
         $product->save();
         Product::create($request->all());
         return redirect()->route('product.listProduct')->with('success','Thêm sản phẩm thành công');;
+    }
+    public function searchProduct_admin(Request $request)
+    {
+        $keyword = $request->keyword;
+        $products = Product::where('name', 'LIKE', '%' . $keyword . '%')->paginate(4);
+        return view('admin.product.listproduct', compact('products'));
     }
 
 }
