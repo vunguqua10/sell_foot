@@ -16,6 +16,12 @@ class CategoryController extends Controller
        $categories = Category::orderBy('id','DESC')->paginate(5);
         return view('admin.category.listcategory', compact('categories'));
     }
+    public function getCategory()
+    {
+        
+        $categories = Category::paginate(4);
+        return view('shop.shop', compact('categories'));
+    }
      //them loai san pham
      public function addCategory()
      {

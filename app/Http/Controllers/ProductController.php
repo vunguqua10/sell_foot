@@ -24,8 +24,7 @@ class ProductController extends Controller
         $products = DB::table('products')->select('*')->get();
         return view('admin.product.addproduct', ['categories' => $categories, 'products' => $products]);
     }
-
-    public function post_addProduct(Request $request)
+    public function customProduct(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -37,7 +36,7 @@ class ProductController extends Controller
             'photo' => 'required',
         ]);
         $file = $request->file('photo');
-        $path = 'uploads';
+        $path = 'images';
         $fileName = $file->getClientOriginalName();
         $file->move($path, $fileName);
         $product = new Product($request->all());
@@ -61,13 +60,14 @@ class ProductController extends Controller
     public function getDataEdit($id)
     {
         $getData = DB::table('products')->select('*')->where('id', $id)->get();
-        return view('admin.product.editproduct')->with('getDataProductById', $getData);
+        $categories = DB::table('categories')->select('*')->get();
+        return view('admin.product.editproduct', ['getDataProductById' => $getData, 'categories' => $categories]);
     }
 
     public function updateProduct(Request $request)
     {
         $file = $request->file('photo');
-        $path = 'uploads';
+        $path = 'images';
         $fileName = $file->getClientOriginalName();
         $file->move($path, $fileName);
 
