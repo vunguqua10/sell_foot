@@ -3,7 +3,7 @@
 @section('main-content')
 <div class="content-wrapper">
 <section class="content-header">
-  <form action="{{ route('product.searchProductAdmin') }}" method="GET">
+  {{-- <form action="{{ route('product.searchProductAdmin') }}" method="GET">
     <div CLASS="input-group">
       @csrf
       <input type="text" name="keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">

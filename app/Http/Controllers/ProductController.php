@@ -24,11 +24,6 @@ class ProductController extends Controller
         $products = DB::table('products')->select('*')->get();
         return view('admin.product.addproduct', ['categories' => $categories, 'products' => $products]);
     }
-    function addProduct()
-    {
-        $categories = DB::table('categories')->select('*')->get();
-        return view('admin.product.addproduct', ['categories' => $categories]);
-    }
     public function customProduct(Request $request)
     {
         $request->validate([
