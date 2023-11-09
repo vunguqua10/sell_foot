@@ -107,6 +107,7 @@ Route::get('add-to-wishlist/{id}', [WishlistController::class, 'addProductToWish
 Route::get('remove-from-wishlist/{id}', [WishlistController::class, 'removeProductFromWishlist'])->name('remove-from-wishlist');
 Route::get('clear-wishlist', [WishlistController::class, 'clearWishlist'])->name('clear-wishlist');
 Route::get('update-wishlist', [WishlistController::class, 'updateWishlist'])->name('update-wishlist');
+//
 
 //Voucher
 Route::get('/addvoucher', [VoucherController::class, 'addVoucher'])->name('addvoucher');
