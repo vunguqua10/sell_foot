@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
 
 /*
@@ -99,6 +100,15 @@ Route::get('update-cart', [CartController::class, 'updateCart'])->name('update-c
 //--------
 Route::get('useVoucher', [CartController::class, 'useVoucher'])->name('useVoucher');
 
+
+//Wishlist
+Route::get('/wishlist', [WishlistController::class, 'getAllProductsInWishlist'])->name('wishlist');
+Route::get('add-to-wishlist/{id}', [WishlistController::class, 'addProductToWishlist'])->name('add-to-wishlist');
+Route::get('remove-from-wishlist/{id}', [WishlistController::class, 'removeProductFromWishlist'])->name('remove-from-wishlist');
+Route::get('clear-wishlist', [WishlistController::class, 'clearWishlist'])->name('clear-wishlist');
+Route::get('update-wishlist', [WishlistController::class, 'updateWishlist'])->name('update-wishlist');
+//
+
 //Voucher
 Route::get('/addvoucher', [VoucherController::class, 'addVoucher'])->name('addvoucher');
 Route::post('customvoucher', [VoucherController::class, 'customVoucher'])->name('customvoucher.custom');
@@ -107,6 +117,7 @@ Route::get('getdataedtvoucher/id{id}', [VoucherController::class, 'getDataEditVo
 Route::post('editvoucher', [VoucherController::class, 'updateVoucher'])->name('editvoucher');
 Route::get('deletevoucher/id{id}', [VoucherController::class, 'deleteVoucher'])->name('deletevoucher');
 Route::get('searchvoucher', [VoucherController::class, 'searchVoucher'])->name('searchvoucher');
+
 
 
 //ViewDetail

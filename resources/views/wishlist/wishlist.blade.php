@@ -1,4 +1,5 @@
 @include('header.header')
+@Section('content')
     <!-- Start All Title Box -->
     <div class="all-title-box">
         <div class="container">
@@ -20,6 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                <form action="{{ route('update-wishlist') }}" method="get">
                     <div class="table-main table-responsive">
                         <table class="table">
                             <thead>
@@ -27,86 +29,39 @@
                                     <th>Images</th>
                                     <th>Product Name</th>
                                     <th>Unit Price </th>
-                                    <th>Stock</th>
                                     <th>Add Item</th>
                                     <th>Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                 @foreach($productsWishlist as $productWishlist)
                                 <tr>
                                     <td class="thumbnail-img">
                                         <a href="#">
-									<img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-								</a>
+                                        <img class="img-fluid" src="{{asset('images')}}/{{$productWishlist->photo}}" alt="" />
+								        </a>
                                     </td>
                                     <td class="name-pr">
                                         <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
+                                        {{$productWishlist -> name}}
+								        </a>
                                     </td>
                                     <td class="price-pr">
-                                        <p>$ 80.0</p>
+                                        <p>{{$productWishlist -> price}}đ</p>
                                     </td>
-                                    <td class="quantity-box">In Stock</td>
                                     <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                        <a class="btn hvr-hover" href="{{ route('add-to-cart', $productWishlist->id) }}">Add to Cart</a>
                                     </td>
                                     <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
+                                        <a href="{{ route('remove-from-wishlist', $productWishlist->id) }}">
+									    <i class="fas fa-times"></i>
+								        </a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-02.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 60.0</p>
-                                    </td>
-                                    <td class="quantity-box">In Stock</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-03.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 30.0</p>
-                                    </td>
-                                    <td class="quantity-box">In Stock</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
+                                </tr>  
+                                @endforeach                             
                             </tbody>
                         </table>
+                        </from>
                     </div>
                 </div>
             </div>
@@ -115,7 +70,7 @@
     <!-- End Wishlist -->
 
     <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
+    <!-- <div class="instagram-box">
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
@@ -198,7 +153,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- End Instagram Feed  -->
 
 @include('footer.footer')
