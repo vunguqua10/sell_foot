@@ -18,7 +18,7 @@ class VoucherController extends Controller
 
     public function addVoucher()
     {
-        return view('admin.content.addvoucher');
+        return view('admin.voucher.addvoucher');
     }
 
     public function customVoucher(Request $request)
@@ -52,9 +52,9 @@ class VoucherController extends Controller
 
     public function getDataEditVoucher($id)
     {
-        AdminController::checkPermission();
+
         $getData = DB::table('vouchers')->select('*')->where('id', $id)->get();
-        return view('admin.content.editvoucher')->with('getDataVoucherById', $getData);
+        return view('admin.voucher.editvoucher')->with('getDataVoucherById', $getData);
     }
 
     public function updateVoucher(Request $request)
@@ -76,7 +76,7 @@ class VoucherController extends Controller
 
     public function deleteVoucher($id)
     {
-        AdminController::checkPermission();
+
         $deleteData = DB::table('vouchers')->where('id', '=', $id)->delete();
         return redirect('listvoucher');
     }
@@ -84,15 +84,15 @@ class VoucherController extends Controller
 
     public function listVoucher()
     {
-        AdminController::checkPermission();
-        $vouchers = DB::table('vouchers')->paginate(4);
-        return view('admin.content.listvoucher', compact('vouchers'));
-    }
 
+        $vouchers = DB::table('vouchers')->paginate(4);
+        return view('admin.voucher.listvoucher', compact('vouchers'));
+    }
+    
     public function searchVoucher(Request $request)
     {
         $keyword = $request->keyword;
         $vouchers = Voucher::where('code_voucher', 'LIKE', '%' . $keyword . '%')->paginate(4);
-        return view('admin.content.listsearchvoucher', compact('vouchers'));
+        return view('admin.voucher.listsearchvoucher', compact('vouchers'));
     }
 }

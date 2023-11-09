@@ -79,8 +79,10 @@ Route::prefix('admin')->group(function () {
     Route::get('getdataedtcategory/id{id}', [CategoryController::class, 'editCategory'])->name('getdataedtcategory');
     Route::post('editcategory',[CategoryController::class,'updateCategory'])->name('editcategory');
     Route::get('/delCategory-{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
-    Route::get('/searchcategory', [CategoryController::class, 'searchCategory'])->name('searchcategory');
 
+    Route::get('/getcategories', [CategoryController::class, 'getCategories'])->name('getcategories');
+
+    Route::get('/searchcategory', [CategoryController::class, 'searchCategory'])->name('searchcategory');
 
     //product
     Route::get('/listProduct',[ProductController::class,'listProduct'])->name('product.listProduct');
@@ -98,12 +100,24 @@ Route::get('update-cart', [CartController::class, 'updateCart'])->name('update-c
 //--------
 Route::get('useVoucher', [CartController::class, 'useVoucher'])->name('useVoucher');
 
+
 //Wishlist
 Route::get('/wishlist', [WishlistController::class, 'getAllProductsInWishlist'])->name('wishlist');
 Route::get('add-to-wishlist/{id}', [WishlistController::class, 'addProductToWishlist'])->name('add-to-wishlist');
 Route::get('remove-from-wishlist/{id}', [WishlistController::class, 'removeProductFromWishlist'])->name('remove-from-wishlist');
 Route::get('clear-wishlist', [WishlistController::class, 'clearWishlist'])->name('clear-wishlist');
 Route::get('update-wishlist', [WishlistController::class, 'updateWishlist'])->name('update-wishlist');
+
+//Voucher
+Route::get('/addvoucher', [VoucherController::class, 'addVoucher'])->name('addvoucher');
+Route::post('customvoucher', [VoucherController::class, 'customVoucher'])->name('customvoucher.custom');
+Route::get('listvoucher', [VoucherController::class, 'listVoucher'])->name('listvoucher');
+Route::get('getdataedtvoucher/id{id}', [VoucherController::class, 'getDataEditVoucher'])->name('getdataedtvoucher');
+Route::post('editvoucher', [VoucherController::class, 'updateVoucher'])->name('editvoucher');
+Route::get('deletevoucher/id{id}', [VoucherController::class, 'deleteVoucher'])->name('deletevoucher');
+Route::get('searchvoucher', [VoucherController::class, 'searchVoucher'])->name('searchvoucher');
+
+
 
 //ViewDetail
 
