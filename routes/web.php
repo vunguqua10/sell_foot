@@ -78,11 +78,14 @@ Route::prefix('admin')->group(function () {
     Route::get('getdataedtcategory/id{id}', [CategoryController::class, 'editCategory'])->name('getdataedtcategory');
     Route::post('editcategory',[CategoryController::class,'updateCategory'])->name('editcategory');
     Route::get('/delCategory-{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
+    Route::get('/searchcategory', [CategoryController::class, 'searchCategory'])->name('searchcategory');
+
 
     //product
     Route::get('/listProduct',[ProductController::class,'listProduct'])->name('product.listProduct');
     Route::get('/addProduct',[ProductController::class,'addProduct'])->name('product.addProduct');
     Route::post('/addProduct',[ProductController::class,'post_addProduct'])->name('product.addProduct');
+    Route::get('/search_product', [ProductController::class, 'searchProduct_admin'])->name('product.searchProductAdmin');
 });
 
 //Cart
