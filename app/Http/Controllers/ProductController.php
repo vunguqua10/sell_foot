@@ -12,14 +12,17 @@ use Illuminate\Support\Facades\DB;
 //Unknow
 class ProductController extends Controller
 {
-    public function registrationProduct()
+    // public function registrationProduct()
+    // {
+    //     return view('admin.product.addproduct');
+    // }
+        //Thêm sản phẩm:
+        public function addProduct()
     {
-        return view('admin.product.addproduct');
-    }
-    function addProduct()
-    {
+        
         $categories = DB::table('categories')->select('*')->get();
-        return view('admin.product.addproduct', ['categories' => $categories]);
+        $products = DB::table('products')->select('*')->get();
+        return view('admin.product.addproduct', ['categories' => $categories, 'products' => $products]);
     }
     public function customProduct(Request $request)
     {
@@ -101,4 +104,11 @@ class ProductController extends Controller
         $products = Product::where('name', 'LIKE', '%' . $keyword . '%')->paginate(3);
         return view('shop/shop', compact('products'));
     }
+    public function searchProduct_Admin(Request $request)
+    {
+        $keyword = $request->keyword;
+        $products = Product::where('name', 'LIKE', '%' . $keyword . '%')->paginate(4);
+        return view('admin.product.listproduct', compact('products'));
+    }
+      
 }

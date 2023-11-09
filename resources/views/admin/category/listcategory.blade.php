@@ -7,20 +7,27 @@
 <?php $page = 'protypes';?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+  
     <!-- Content Header (Page header) -->
     <section class="content-header">
+      <form action="{{ route('searchcategory') }}" method="GET">
+        <div CLASS="input-group">
+          @csrf
+          <input type="text" name="keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div CLASS="input-group-append">
+            <button CLASS="btn btn-primary" type="submit">
+              <i CLASS="fas fa-search fa-sm"></i>
+            </button>
+          </div>
+        </div>
+        </form><br>
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Category</h1>
+        <div class="row">
+          <br><div class="col-sm-6">
+            <h1>Category</h1><br>
             <h6><a href="{{route('category.addCategory')}}" class="btn btn-primary">ADD CATEGORY</a></h6>
           </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Protypes</li>
-            </ol>
-          </div>
+        
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -76,6 +83,10 @@
                   @endforeach
               </tbody>
           </table>
+          <div class=""><br>    
+            {{$categories ->appends(request()->all())->links()}}
+        {{-- {{$categories ->links()}} --}}
+          </div>
         </div>
         <!-- /.card-body -->
       </div>

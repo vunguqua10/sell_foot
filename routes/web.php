@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomProductsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -78,11 +79,14 @@ Route::prefix('admin')->group(function () {
     Route::get('getdataedtcategory/id{id}', [CategoryController::class, 'editCategory'])->name('getdataedtcategory');
     Route::post('editcategory',[CategoryController::class,'updateCategory'])->name('editcategory');
     Route::get('/delCategory-{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
+    Route::get('/searchcategory', [CategoryController::class, 'searchCategory'])->name('searchcategory');
+
 
     //product
     Route::get('/listProduct',[ProductController::class,'listProduct'])->name('product.listProduct');
     Route::get('/addProduct',[ProductController::class,'addProduct'])->name('product.addProduct');
     Route::post('/addProduct',[ProductController::class,'post_addProduct'])->name('product.addProduct');
+    Route::get('/search_product', [ProductController::class, 'searchProduct_admin'])->name('product.searchProductAdmin');
 });
 
 //Cart
@@ -101,3 +105,6 @@ Route::get('remove-from-wishlist/{id}', [WishlistController::class, 'removeProdu
 Route::get('clear-wishlist', [WishlistController::class, 'clearWishlist'])->name('clear-wishlist');
 Route::get('update-wishlist', [WishlistController::class, 'updateWishlist'])->name('update-wishlist');
 
+//ViewDetail
+
+Route::get('view-detail/{id}', [CustomProductsController::class,'viewDetailProducts'])->name('show_detail');
