@@ -119,7 +119,7 @@
                                 <ul>
                                     <li><a href="shop_detail" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="wishlist" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="{{ route('add-to-wishlist',$product->id) }}" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
                                 <a class="cart" href="{{ route('add-to-cart',$product->id) }}">Add to Cart</a>
                             </div>
