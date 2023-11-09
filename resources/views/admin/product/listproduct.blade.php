@@ -2,14 +2,16 @@
 @section('title','Trang them san pham')
 @section('main-content')
 <div class="content-wrapper">
-{{-- <form action="{{ route('searchproduct') }}" method="GET">
-  <div CLASS="input-group">
-    @csrf
-    <input type="text" name="keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-    <div CLASS="input-group-append">
-      <button CLASS="btn btn-primary" type="submit">
-        <i CLASS="fas fa-search fa-sm"></i>
-      </button>
+<section class="content-header">
+  <form action="{{ route('product.searchProductAdmin') }}" method="GET">
+    <div CLASS="input-group">
+      @csrf
+      <input type="text" name="keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+      <div CLASS="input-group-append">
+        <button CLASS="btn btn-primary" type="submit">
+          <i CLASS="fas fa-search fa-sm"></i>
+        </button>
+      </div>
     </div>
   </div>
 </form> --}}
@@ -43,8 +45,8 @@
             <td>{{$product->sold}}</td>
             <td>{{$product->id_category}}</td>
             <td>
-              <a href="{{route('getdataedt',$product->id)}}" class="btn btn-primary">Edit</a>
-              <a href="{{route('deleteproduct',$product->id)}}" class="btn btn-primary">Delete</a>
+              <a class="btn btn-info btn-sm" href="{{route('getdataedt',$product->id)}}" class="fas fa-pencil-alt">Edit</a>
+              <a class="btn btn-danger btn-sm" href="{{route('deleteproduct',$product->id)}}" class="btn btn-primary">Delete</a>
             </td>
           </tr>
           @endforeach

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomProductsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -77,11 +78,16 @@ Route::prefix('admin')->group(function () {
     Route::get('getdataedtcategory/id{id}', [CategoryController::class, 'editCategory'])->name('getdataedtcategory');
     Route::post('editcategory',[CategoryController::class,'updateCategory'])->name('editcategory');
     Route::get('/delCategory-{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
+
     Route::get('/getcategories', [CategoryController::class, 'getCategories'])->name('getcategories');
+
+    Route::get('/searchcategory', [CategoryController::class, 'searchCategory'])->name('searchcategory');
+
     //product
     Route::get('/listProduct',[ProductController::class,'listProduct'])->name('product.listProduct');
     Route::get('/addProduct',[ProductController::class,'addProduct'])->name('product.addProduct');
     Route::post('/addProduct',[ProductController::class,'post_addProduct'])->name('product.addProduct');
+    Route::get('/search_product', [ProductController::class, 'searchProduct_admin'])->name('product.searchProductAdmin');
 });
 
 //Cart
@@ -103,3 +109,6 @@ Route::get('deletevoucher/id{id}', [VoucherController::class, 'deleteVoucher'])-
 Route::get('searchvoucher', [VoucherController::class, 'searchVoucher'])->name('searchvoucher');
 
 
+//ViewDetail
+
+Route::get('view-detail/{id}', [CustomProductsController::class,'viewDetailProducts'])->name('show_detail');

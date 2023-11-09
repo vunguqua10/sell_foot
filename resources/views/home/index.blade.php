@@ -9,7 +9,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> Sell Food</strong></h1> 
+                            <h1 class="m-b-20"><strong>Welcome To <br> Sell Food</strong></h1>
                             <p><a class="btn hvr-hover" href="#">Shop New</a></p>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
         </div>
     </div>
     <!-- End Categories -->
-<!-- 
+<!--
 	<div class="box-add-products">
 		<div class="container">
 			<div class="row">
@@ -117,7 +117,8 @@
                             <img src="{{asset('images')}}/{{$product->photo}}" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="shop_detail" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+
+                                    <li><a href="{{route('show_detail',$product->id)}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                     <li><a href="wishlist" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
@@ -140,7 +141,7 @@
                             <img src="{{asset('images')}}/{{$product->photo}}" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="shop_detail" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="{{route('show_detail',$product->id)}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                     <li><a href="wishlist" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>

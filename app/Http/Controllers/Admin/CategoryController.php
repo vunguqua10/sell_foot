@@ -12,7 +12,8 @@ class CategoryController extends Controller
     public function listCategory()
     {
         
-        $categories = Category::paginate(4);
+       // $categories = Category::paginate(4);
+       $categories = Category::orderBy('id','DESC')->paginate(5);
         return view('admin.category.listcategory', compact('categories'));
     }
     public function getCategory()
@@ -82,5 +83,11 @@ class CategoryController extends Controller
        
         $deleteData = DB::table('categories')->where('id', '=', $id)->delete();
         return view('admin.category.listcategory');
+    }
+    public function searchCategory(Request $request)
+    {
+        $keyword = $request->keyword;
+        $categories = Category::where('cate_name', 'LIKE', '%' . $keyword . '%')->paginate(5);
+        return view('admin.category.listcategory', compact('categories'));
     }
 }

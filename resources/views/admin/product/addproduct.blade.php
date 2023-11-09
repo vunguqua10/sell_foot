@@ -35,7 +35,7 @@
                                     <option selected disabled>Select one</option>
                                     
                                     @foreach ($categories as $value)
-                                        <option value="{{$value->id}}">{{$value->id}}</option>
+                                        <option value="{{$value->id}}">{{$value->cate_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
