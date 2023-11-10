@@ -31,7 +31,7 @@
                             </div>
                             <div class="text-center">
                                     <p>or login with:</p>
-                                    <button type="button" class="btn  btn-floating mx-1 login-logo">
+                                    <button type="button" class="btn btn-floating mx-1 login-logo">
                                         <i class="fab fa-facebook-f"></i>
                                       </button>
                           
