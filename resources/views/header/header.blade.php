@@ -97,7 +97,7 @@
                             <a href="#">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge">3</span>
-                                <p>My Cart</p>
+                                <p>{{ __('label.cart') }}</p>
                             </a>
                         </li>
                     </ul>
