@@ -1,0 +1,21 @@
+.elevation-4{
+    background: #9152f8;
+    background: -webkit-linear-gradient(top,#038a37,#4c046b);
+    background: -o-linear-gradient(top,#7579ff,#b141e1);
+    background: -moz-linear-gradient(top,#7579ff,#4e046d);
+    background: linear-gradient(top,#030553,#290239);
+}
+
+.user-panel img {
+    width: 70px;
+    margin-left: 50px;
+}
+.brand-link .image-logo {
+    width: 92px;
+    max-height: 46px;
+    margin-left: 35px;
+}
+.brand-link .brand-text{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 20px;
+}
