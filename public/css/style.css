@@ -2612,11 +2612,12 @@
     color: #f7f4f4
 }
 .mx-auto .btn-register
-{     padding: 0px 69px;
+{        padding: 0px 36px;
 
 }
 .mx-auto .btn-singnin{ 
-padding: 8px 95px;
+padding: 8px 57px;
+
 
 }
 .btn-block:hover{
