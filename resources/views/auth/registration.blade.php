@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card">
-                    <h3 class="card-header text-center">Register User</h3>
+                    <h3 class="card-header text-center title-text">Register User</h3>
                     <div class="card-body">
                         <form action="{{ route('register.custom') }}" method="POST">
                             @csrf
