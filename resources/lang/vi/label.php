@@ -16,11 +16,11 @@ return [
     'total' => 'Tổng',
     'subtotal' => 'Tổng phụ',
     'continueshop' => 'MUA TIẾP',
-    'update' => 'CẬP NHẬT',
+    'updatecart' => 'CẬP NHẬT GIỎ HÀNG',
     'clear' => 'XÓA',
     'voucher' => 'Mã Giảm Giá',
     'apply' => 'ÁP DỤNG',
-    'totalcart' => 'TỔNG GIỎ HÀNG',
+    'totalcart' => 'TỔNG TIỀN',
     'checkout' => 'Thanh toán',
     'shopnow' => 'Mua Ngay',
     'hot' => 'Sản phẩm mới !!',
@@ -38,5 +38,11 @@ return [
     'myaccount' => 'Tài khoản',
     'wishlist' => 'Sản phẩm yêu thích',
     'gallery' => 'Sản phẩm trưng bày',
-    'contactus' => 'Liên hệ'
+    'contactus' => 'Liên hệ',
+    'view' => 'Chi tiết',
+    'wishslist' => 'Yêu thích',
+    'compare' => 'Tương tự',
+    'images' => 'Ảnh',
+    'quanlity' => 'Số lượng',
+    'remove' => 'Xóa'
 ];
