@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card">
-                    <h3 class="card-header text-center">Login</h3>
+                    <h3 class="card-header text-center title-text">Login</h3>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login.custom') }}">
                             @csrf
@@ -31,19 +31,20 @@
                             </div>
                             <div class="text-center">
                                     <p>or login with:</p>
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <a href=""><i class="fab fa-facebook-f"></i></a>
-
-                                    </button>
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <a href=""><i class="fab fa-google"></i></a>
-
-                                    </button>
+                                    <button type="button" class="btn btn-floating mx-1 login-logo">
+                                        <i class="fab fa-facebook-f"></i>
+                                      </button>
+                          
+                                      <button type="button" class="btn  btn-floating mx-1 login-logo">
+                                        <i class="fab fa-google"></i>
+                                      </button>
+                                </div>
+                                <div class=" mx-auto">
+                                    <button type="submit" class="btn btn-dark btn-block btn-singnin">Signin</button>
+                                    <button type="submit" class="btn btn-dark btn-block btn-register"> 
+                                        <a class="nav-link" href="{{ route('register-user') }}">Register</a>
                                     </button>
                                 </div>
-                            <div class="d-grid mx-auto">
-                                <button type="submit" class="btn btn-dark btn-block">Signin</button>
-                            </div>
                         </form>
                     </div>
                 </div>
