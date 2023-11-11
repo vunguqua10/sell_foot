@@ -67,23 +67,24 @@
                     <i CLASS="fas fa-search fa-sm"></i>
                     </button>
                      </form>
+                     
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
 
-                        <li class="nav-item active"><a class="nav-link" href="{{route('home')}}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{route('about_us')}}">About Us</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{{route('home')}}">{{ __('label.home') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('about_us')}}">{{ __('label.aboutus') }}</a></li>
                         <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">{{ __('label.shop') }}</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{route('shop')}}">Sidebar Shop</a></li>
-                                <li><a href="{{route('shop_detail')}}">Shop Detail</a></li>
-                                <li><a href="{{route('cart')}}">Cart</a></li>
-                                <li><a href="{{route('check_out')}}">Checkout</a></li>
-                                <li><a href="{{route('my_account')}}">My Account</a></li>
-                                <li><a href="{{route('wishlist')}}">Wishlist</a></li>
+                                <li><a href="{{route('shop')}}">{{ __('label.sidebarshop') }}</a></li>
+                                <li><a href="{{route('shop_detail')}}">{{ __('label.shopdetail') }}</a></li>
+                                <li><a href="{{route('cart')}}">{{ __('label.cart') }}</a></li>
+                                <li><a href="{{route('check_out')}}">{{ __('label.checkout') }}</a></li>
+                                <li><a href="{{route('my_account')}}">{{ __('label.myaccount') }}</a></li>
+                                <li><a href="{{route('wishlist')}}">{{ __('label.wishlist') }}</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{route('gallery')}}">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{route('contact_us')}}">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('gallery')}}">{{ __('label.gallery') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('contact_us')}}">{{ __('label.contactus') }}</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -96,7 +97,7 @@
                             <a href="#">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge">3</span>
-                                <p>My Cart</p>
+                                <p>{{ __('label.cart') }}</p>
                             </a>
                         </li>
                     </ul>
@@ -105,6 +106,13 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="offcanvas__top__hover">
+            <span>{{ __('label.language') }}<i class="arrow_carrot-down"></i></span>
+            <ul>
+                <li><a class="active" href="{{ route('change-language', 'en') }}">EngLish</a></li>
+                <li><a href="{{ route('change-language', 'vi') }}">Tiếng Việt</a></li>
+            </ul>
+        </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     @guest
