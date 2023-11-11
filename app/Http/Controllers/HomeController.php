@@ -22,8 +22,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //http://127.0.0.1:8000/change-language/en
-        var_dump(App::getLocale());die();
         return view('home.index');
     }
     public function aboutUs()
@@ -73,7 +71,6 @@ class HomeController extends Controller
     {
         // $hotproduct = DB::table('products')->orderBy('created_at', 'asc')->limit(4)->get();
         // $bestseller = DB::table('products')->orderBy('sold', 'desc')->limit(4)->get();
-        // return view('home.index', compact('hotproduct', 'bestseller'));
         
         App::setLocale(session()->get('locale'));
         $hotproduct = DB::table('products')->orderBy('created_at', 'asc')->limit(4)->get();
