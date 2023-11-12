@@ -3,9 +3,9 @@
 @section('content')
 <main class="signup-form">
     <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="card">
+        <div class="row justify-content-center conten-form">
+            <div class="col-md-4 card-login">
+                <div class="card card-form">
                     <h3 class="card-header text-center title-text">Register User</h3>
                     <div class="card-body">
                         <form action="{{ route('register.custom') }}" method="POST">
