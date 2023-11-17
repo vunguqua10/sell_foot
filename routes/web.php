@@ -94,6 +94,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/order',[OrderController::class,'orders'])->name('orders');
     Route::get('/editOrder-{id}',[OrderController::class,'editOrder'])->name('editOrder');
+    Route::post('/editOrder-{id}',[OrderController::class,'post_editOrder'])->name('editOrder');
     Route::get('/order-del-{id}',[OrderController::class,'deleteorder'])->name('del_order');
 });
 

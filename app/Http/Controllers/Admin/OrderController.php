@@ -22,6 +22,15 @@ function editOrder($id)
    $orderbyid = Order::find($id);
    return view('admin.order.editorder',['orderbyid'=>$orderbyid]);
 }
+//Post sửa trạng thái đơn hàng lên:
+function post_editOrder($id,Request $request){
+    $this -> validate($request,[
+        'status' => 'required'
+    ],['status.required' => 'Trạng thái không được để trống']);
+    $request -> offsetUnset('_token');
+    Order::where(['id'=>$id])->update($request->all());
+    return redirect()->route('orders')->with('success','Sửa trạng thái thành công');
+}
 //Xóa đơn hàng
 function deleteorder($id){
     $orders = Order::where('id',$id)->get();

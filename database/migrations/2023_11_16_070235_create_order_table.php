@@ -18,7 +18,7 @@ class CreateOrderTable extends Migration
             $table->integer('user_id');
             $table->timestamps();     
             $table->string('email'); 
-            // $table->tinyInteger('status')->default(0);
+             $table->tinyInteger('status')->default(0);
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
