@@ -27,12 +27,12 @@
               <div class="inner">
                 <h3>{{$category_count}}</h3>
 
-                <p>Loai san pham</p>
+                <p>All Category</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('category.listCategory')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -42,12 +42,12 @@
               <div class="inner">
                 <h3>{{$product_count}}<sup style="font-size: 20px"></sup></h3>
 
-                <p>san pham</p>
+                <p>All Product</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('product.listProduct')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->    
@@ -57,7 +57,7 @@
               <div class="inner">
                 <h3>...<sup style="font-size: 20px"></sup></h3>
 
-                <p>Don hang</p>
+                <p>List Order</p>
               </div>
               <div class="icon">
                 <i class="ion ion-arrow-graph-up-right"></i>

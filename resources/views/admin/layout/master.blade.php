@@ -65,54 +65,54 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('admin.index')}}" class="nav-link">
-                  <i class="far  nav-icon"></i>
+                  <i class="far nav-icon "></i>
                   <p>Home</p>
                 </a>
               </li>
           
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('category.listCategory')}}" class="nav-link ">
                   <i class="far  nav-icon"></i>
                   <p>All Category</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('category.addCategory')}}" class="nav-link">
                   <i class="far  nav-icon"></i>
                   <p>ADD Category</p>
                 </a>
               </li>
               
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('product.listProduct')}}" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>All Product</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('product.addProduct')}}" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>ADD Product</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('listvoucher')}}" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>Voucher</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('addvoucher')}}" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>ADD Voucher</p>
                 </a>
               </li>
-              <li class="nav-item">
-                 <a href="#" class="nav-link"> 
+              <li class="nav-item buttom-nav">
+                 <a href="{{route('orders')}}" class="nav-link"> 
                   <i class="far nav-icon"></i>
-                  <p>Danh sach don hang</p>
+                  <p>List Oders</p>
                 </a>
               </li>
           </li>

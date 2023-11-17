@@ -12,6 +12,7 @@ use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\LangController;
+use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/addProduct',[ProductController::class,'addProduct'])->name('product.addProduct');
     Route::post('/addProduct',[ProductController::class,'post_addProduct'])->name('product.post_addProduct');
     Route::get('/search_product', [ProductController::class, 'searchProduct_admin'])->name('product.searchProductAdmin');
+
+    Route::get('/order',[OrderController::class,'orders'])->name('orders');
+    Route::get('/editOrder-{id}',[OrderController::class,'editOrder'])->name('editOrder');
+    Route::get('/order-del-{id}',[OrderController::class,'deleteorder'])->name('del_order');
 });
 
 //Cart
