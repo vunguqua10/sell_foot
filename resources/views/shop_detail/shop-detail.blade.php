@@ -1,5 +1,7 @@
 @include('header.header')
-
+@php
+    session(['products' => $products]);
+@endphp
     <!-- Start All Title Box -->
     <div class="all-title-box">
         <div class="container">

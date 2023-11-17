@@ -1,4 +1,7 @@
 @include('header.header')
+@php
+session(['productsCart' => $productsCart]);
+@endphp
 @Section('content')
     <!-- Start All Title Box -->
     <div class="all-title-box">
@@ -65,7 +68,7 @@
 								</a>
                                     </td>
                                 </tr>
-                                
+
                                 @endforeach
                             </tbody>
                         </table>
@@ -108,5 +111,5 @@
 </section>
     <!-- End Cart -->
 
-    
+
 @include('footer.footer')

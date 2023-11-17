@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\CheckoutController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\CustomProductsController;
 use App\Http\Controllers\HomeController;
@@ -37,6 +38,8 @@ Route::get('my_account',[HomeController::class,'myAccount'])->name('my_account')
 Route::get('wishlist',[HomeController::class,'wishList'])->name('wishlist');
 Route::get('gallery',[HomeController::class,'gallery'])->name('gallery');
 Route::get('contact_us',[HomeController::class,'contactUs'])->name('contact_us');
+Route::get('history_payment', [HomeController::class,'historyPayment'])->name('history_payment');
+
 
 // Product
 Route::get('listproduct', [ProductController::class, 'listProduct'])->name('listproduct');
@@ -122,8 +125,11 @@ Route::get('searchvoucher', [VoucherController::class, 'searchVoucher'])->name('
 
 
 //ViewDetail
-
 Route::get('view-detail/{id}', [CustomProductsController::class,'viewDetailProducts'])->name('show_detail');
+
+//Checkout
+Route::get('show_checkout/{user_id}', [CheckoutController::class,'showCheckout'])->name('show_checkout');
+Route::post('save', [CheckoutController::class,'saveUserInfo'])->name('save_infor');
 
 // Multilang
 Route::get('change-language/{language}', [LangController::class, 'changeLanguage'])->name('change-language');
