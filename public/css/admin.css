@@ -1,0 +1,19 @@
+.wrap-admin .nav-admin{
+    background: #9152f8;
+    background: -webkit-linear-gradient(top,#038a37,#4c046b);
+   
+}
+
+.user-panel img {
+    width: 70px;
+    margin-left: 50px;
+}
+ .brand-link .image-logo {
+    width: 92px;
+    max-height: 46px;
+    margin-left: 35px;
+}
+.brand-link .brand-text{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 20px;
+}

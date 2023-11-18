@@ -22,10 +22,10 @@
                             </div>
                             
                             <div class="form-group mb-3">
-                                <input type="date" placeholder="Created Date" id="createddate" name="createddate"  required autofocus>
+                                Start day <input type="date" placeholder="Created Date" id="createddate" name="createddate"  required autofocus>
                             </div>
                             <div class="form-group mb-3">
-                                <input type="date" placeholder="Expired Date" id="expireddate" name="expireddate" required autofocus>
+                                End day <input type="date" placeholder="Expired Date" id="expireddate" name="expireddate" required autofocus>
                             </div>
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Gia tri giam" id="reduce" class="form-control" name="reduce" required autofocus>

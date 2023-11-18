@@ -51,7 +51,7 @@
         <div class="container">
         <div class="col-lg-12">
                     <div class="title-all text-center">
-                        <div><h1 class="hot">SẢN PHẨM MỚI !!</h1></div>
+                        <div><h1 class="hot">{{ __('label.hot') }}</h1></div>
                     </div>
                 </div>
             <div class="row">
@@ -91,7 +91,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="title-all text-center">
-                        <h1 class="hot">SẢN PHẨM GỢI Ý !!</h1>
+                        <h1 class="hot">{{ __('label.sugges') }}</h1>
                     </div>
                 </div>
             </div>
@@ -100,8 +100,8 @@
                     <div class="special-menu text-center">
                         <div class="button-group filter-button-group">
                             <button class="active" data-filter="*">All</button>
-                            <button data-filter=".top-featured">Top featured</button>
-                            <button data-filter=".best-seller">Best seller</button>
+                            <button data-filter=".top-featured">{{ __('label.newarrival') }}</button>
+                            <button data-filter=".best-seller">{{ __('label.bestseller') }}</button>
                         </div>
                     </div>
                 </div>
@@ -118,12 +118,14 @@
                             <div class="mask-icon">
                                 <ul>
 
-                                    <li><a href="{{route('show_detail',$product->id)}}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="{{ route('add-to-wishlist',$product->id) }} " data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+
+
+                                    <li><a href="{{route('show_detail',$product->id)}}" data-toggle="tooltip" data-placement="right" title="{{ __('label.view') }}"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="{{ __('label.compare') }}"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="{{ route('add-to-wishlist',$product->id) }}" data-toggle="tooltip" data-placement="right" title="{{ __('label.wishslist') }}"><i class="far fa-heart"></i></a></li>
 
                                 </ul>
-                                <a class="cart" href="{{ route('add-to-cart',$product->id) }}">Add to Cart</a>
+                                <a class="cart" href="{{ route('add-to-cart',$product->id) }}">{{ __('label.addtocart') }}</a>
                             </div>
                         </div>
                         <div class="why-text">
@@ -146,7 +148,7 @@
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                                     <li><a href="wishlist" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
-                                <a class="cart" href="#">Add to Cart</a>
+                                <a class="cart" href="#">{{ __('label.addtocart') }}</a>
                             </div>
                         </div>
                         <div class="why-text">
