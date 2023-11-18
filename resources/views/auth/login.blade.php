@@ -2,10 +2,10 @@
 @section('content')
 <main class="login-form">
     <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="card">
-                    <h3 class="card-header text-center">Login</h3>
+        <div class="row justify-content-center conten-form">
+            <div class="col-md-4 card-login">
+                <div class="card card-form">
+                    <h3 class="card-header text-center title-text">Login</h3>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login.custom') }}">
                             @csrf
@@ -16,7 +16,7 @@
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 form-input">
                                 <input type="password" placeholder="Password" id="password" class="form-control" name="password" required value='123456'
                                 @if ($errors->has('password'))
                                 <span class="text-danger">{{ $errors->first('password') }}</span>
@@ -31,19 +31,20 @@
                             </div>
                             <div class="text-center">
                                     <p>or login with:</p>
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <a href=""><i class="fab fa-facebook-f"></i></a>
-
-                                    </button>
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <a href=""><i class="fab fa-google"></i></a>
-
-                                    </button>
+                                    <button type="button" class="btn btn-floating mx-1 login-logo">
+                                        <i class="fab fa-facebook-f"></i>
+                                      </button>
+                          
+                                      <button type="button" class="btn  btn-floating mx-1 login-logo">
+                                        <i class="fab fa-google"></i>
+                                      </button>
+                                </div>
+                                <div class=" mx-auto">
+                                    <button type="submit" class="btn btn-dark btn-block btn-singnin">Signin</button>
+                                    <button type="submit" class="btn btn-dark btn-block btn-register"> 
+                                        <a class="nav-link" href="{{ route('register-user') }}">Register</a>
                                     </button>
                                 </div>
-                            <div class="d-grid mx-auto">
-                                <button type="submit" class="btn btn-dark btn-block">Signin</button>
-                            </div>
                         </form>
                     </div>
                 </div>
