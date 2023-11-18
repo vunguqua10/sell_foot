@@ -73,7 +73,7 @@
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                          <a class="btn btn-danger btn-sm" href="{{route('user.deleteUser',$user->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
                               <i class="fas fa-trash">
                               </i>
                               Delete
