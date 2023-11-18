@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use DB;
 use Illuminate\Http\Request;
+use App;
 
 
 class HomeController extends Controller
@@ -70,8 +71,8 @@ class HomeController extends Controller
     {
         // $hotproduct = DB::table('products')->orderBy('created_at', 'asc')->limit(4)->get();
         // $bestseller = DB::table('products')->orderBy('sold', 'desc')->limit(4)->get();
-        // return view('home.index', compact('hotproduct', 'bestseller'));
-
+        
+        App::setLocale(session()->get('locale'));
         $hotproduct = DB::table('products')->orderBy('created_at', 'asc')->limit(4)->get();
         $bestseller = DB::table('products')->orderBy('sold', 'desc')->limit(4)->get();
         $topfeatured = DB::table('products')->orderBy('id', 'desc')->limit(4)->get();

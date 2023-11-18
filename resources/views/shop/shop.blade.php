@@ -62,11 +62,11 @@
                                                     <img src="{{asset('images')}}/{{$product->photo}}" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
-                                                            <li><a href="{{route('show_detail',$product->id)}}"data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                            <li><a href="{{route('show_detail',$product->id)}}"data-toggle="tooltip" data-placement="right" title="{{ __('label.view') }}"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="{{ __('label.compare') }}"><i class="fas fa-sync-alt"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="{{ __('label.wishslist') }}"><i class="far fa-heart"></i></a></li>
                                                         </ul>
-                                                        <a class="cart" href="#">Add to Cart</a>
+                                                        <a class="cart" href="#">{{ __('label.addtocart') }}</a>
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
