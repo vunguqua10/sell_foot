@@ -97,7 +97,7 @@ Route::get('/cart', [CartController::class, 'getAllProductsInCart'])->name('cart
 Route::get('add-to-cart/{id}', [CartController::class, 'addProductToCart'])->name('add-to-cart');
 Route::get('remove-from-cart/{id}', [CartController::class, 'removeProductFromCart'])->name('remove-from-cart');
 Route::get('clear-cart', [CartController::class, 'clearCart'])->name('clear-cart');
-Route::get('update-cart', [CartController::class, 'updateCart'])->name('update-cart');
+Route::post('/update-cart', [CartController::class,'updateCart'])->name('update-cart');
 //--------
 Route::get('useVoucher', [CartController::class, 'useVoucher'])->name('useVoucher');
 
