@@ -13,11 +13,8 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LangController;
-<<<<<<< HEAD
 use App\Http\Controllers\Admin\OrderController;
 
-=======
->>>>>>> d6c900e2e5fc767dfa660f874bf5d30c4879730e
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,21 +92,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/addProduct',[ProductController::class,'addProduct'])->name('product.addProduct');
     Route::post('/addProduct',[ProductController::class,'post_addProduct'])->name('product.post_addProduct');
     Route::get('/search_product', [ProductController::class, 'searchProduct_admin'])->name('product.searchProductAdmin');
-<<<<<<< HEAD
 
     Route::get('/order',[OrderController::class,'orders'])->name('orders');
     Route::get('/editOrder-{id}',[OrderController::class,'editOrder'])->name('editOrder');
     Route::post('/editOrder-{id}',[OrderController::class,'post_editOrder'])->name('editOrder');
     Route::get('/order-del-{id}',[OrderController::class,'deleteorder'])->name('del_order');
-=======
-    //user
-    Route::get('/listUser',[UserController::class,'listUser'])->name('user.listUser');
-    Route::get('/addUser',[UserController::class,'addUser'])->name('user.addUser');
-    Route::post('/addUser',[UserController::class,'post_addUser'])->name('postuser.addUser');
-    Route::get('/searchUserAdmin', [UserController::class, 'searchUserAdmin'])->name('user.searchUserAdmin');
-    Route::post('updateUser',[UserController::class,'updateUser'])->name('updateUser');
-    Route::get('/deleteUser-{id}',[UserController::class,'deleteUser'])->name('user.deleteUser');
->>>>>>> d6c900e2e5fc767dfa660f874bf5d30c4879730e
 });
 
 //Cart
