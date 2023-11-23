@@ -25,15 +25,17 @@ class VoucherController extends Controller
     public function customVoucher(Request $request)
     {
         $request->validate([
-            'code_voucher' => ['required', Rule::unique('vouchers', 'code_voucher')],
+            'code_voucher' => ['required', 'max:100', Rule::unique('vouchers', 'code_voucher')],
             'createddate' => 'required',
             'expireddate' => 'required|after:createddate',
             'reduce' => 'required|numeric',
-          ], [
+        ], [
             'expireddate.after' => 'Ngày hết hạn phải sau ngày đăng ký.',
             'reduce.numeric' => 'Giá trị giảm giá phải là một số.',
+            'code_voucher.required' => 'Mã giảm giá là bắt buộc.',
+            'code_voucher.max' => 'Mã giảm giá không được vượt quá 100 ký tự.',
             'code_voucher.unique' => 'Mã giảm giá đã có.',
-          ]);
+        ]);
         
         $createdDate = $request->createddate;
         $newCreatedDate = date("Y-m-d", strtotime($createdDate));

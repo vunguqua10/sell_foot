@@ -10,8 +10,7 @@ class CustomProductsController extends Controller
     public function viewDetailProducts($id){
         $products = Product::find($id);
         if(!$products){
-
-            abort(404, "Không tìm thấy sản phẩm");
+            return back();
         }
         return view("shop_detail.shop-detail",compact("products"));
 
