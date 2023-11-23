@@ -123,40 +123,64 @@
     let total = parseFloat(totalAmountElement.innerText.replace('đ', ''));
 
     function calculateTotal() {
-    let newTotal = 0;
-    totalElements.forEach((element, index) => {
-        const price = parseFloat(priceElements[index].innerText.replace('đ', ''));
-        const quantity = parseInt(quantityInputs[index].value);
-        const totalPrice = quantity * price;
-        element.innerText = totalPrice + 'đ';
+        let newTotal = 0;
+        totalElements.forEach((element, index) => {
+            const price = parseFloat(priceElements[index].innerText.replace('đ', ''));
+            const quantity = parseInt(quantityInputs[index].value);
+            const totalPrice = quantity * price;
+            element.innerText = totalPrice + 'đ';
 
-        newTotal += totalPrice;
-    });
+            newTotal += totalPrice;
+        });
 
-    totalAmountElement.innerText = newTotal + 'đ';
-    totalDivElement.innerText = newTotal + 'đ';
+        totalAmountElement.innerText = newTotal + 'đ';
+        totalDivElement.innerText = newTotal + 'đ';
 
-    total = newTotal;
-
-
+        total = newTotal;
     }
+
+    function isProductInCart(productId) {
+        const storedQuantities = JSON.parse(localStorage.getItem('quantities'));
+
+        if (storedQuantities) {
+            const foundProduct = storedQuantities.find((quantity) => quantity.productId === productId);
+            return foundProduct !== undefined;
+        }
+
+        return false;
+    }
+
     quantityInputs.forEach((input) => {
         input.addEventListener('change', () => {
+            const productId = input.name.split('_')[1];
+            const quantity = input.value;
+
+            if (!isProductInCart(productId)) {
+                alert('Sản phẩm không tồn tại trong giỏ hàng.');
+                history.back();
+                return;
+            }
+
             calculateTotal();
             storeQuantity();
         });
     });
 
     function storeQuantity() {
-        const quantities = Array.from(quantityInputs).map((input, index) => {
-            const productId = input.name.split('_')[1];
-            const quantity = input.value;
-            return { productId, quantity };
-        });
-        localStorage.setItem('quantities', JSON.stringify(quantities));
-        }
+    const quantities = Array.from(quantityInputs).map((input, index) => {
+        const productId = input.name.split('_')[1];
+        const quantity = input.value;
 
-        function restoreQuantity() {
+        // Kiểm tra nếu sản phẩm tồn tại trong giỏ hàng mới lưu trữ số lượng
+        if (isProductInCart(productId)) {
+            return { productId, quantity };
+        }
+    }).filter(Boolean); // Loại bỏ các giá trị undefined/null
+
+    localStorage.setItem('quantities', JSON.stringify(quantities));
+}
+
+    function restoreQuantity() {
         const storedQuantities = JSON.parse(localStorage.getItem('quantities'));
         const storedTotal = JSON.parse(localStorage.getItem('total'));
 
@@ -170,7 +194,7 @@
             });
         }
 
-            if (storedTotal) {
+        if (storedTotal) {
             total = storedTotal;
 
             let totalPrice = 0;
@@ -188,7 +212,7 @@
 
             totalAmountElement.innerText = total + 'đ';
             totalDivElement.innerText = total + 'đ';
-            }
+        }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
