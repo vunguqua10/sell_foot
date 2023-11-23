@@ -53,14 +53,28 @@ class CartController extends Controller
     }
     //Xoa san pham trong gio hang
     public function removeProductFromCart($id_product)
-    {
-        if (Auth::check()) {
-            $id_user = Auth::user()->id;
-            DB::table('cart_details')->where([['id_user', '=', $id_user], ['id_product', '=', $id_product]])->delete();
-            return redirect('cart');
+{
+    if (Auth::check()) {
+        $id_user = Auth::user()->id;
+        $cartDetail = DB::table('cart_details')
+            ->where('id_user', $id_user)
+            ->where('id_product', $id_product)
+            ->first();
+
+        if ($cartDetail) {
+            DB::table('cart_details')
+                ->where('id_user', $id_user)
+                ->where('id_product', $id_product)
+                ->delete();
+        } else {
+            return redirect('cart')->with('error', 'Sản phẩm không tồn tại trong giỏ hàng.');
         }
-        return redirect('login');
+
+        return redirect('cart');
     }
+
+    return redirect('login');
+}
     public function clearCart()
     {
         if (Auth::check()) {

@@ -110,6 +110,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                 <a href="{{route('user.listUser')}}" class="nav-link"> 
+                  <i class="far nav-icon"></i>
+                  <p>User</p>
+                </a>
+              </li>
+              <li class="nav-item">
                  <a href="#" class="nav-link"> 
                   <i class="far nav-icon"></i>
                   <p>Danh sach don hang</p>

@@ -12,8 +12,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LangController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,6 +93,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/addProduct',[ProductController::class,'addProduct'])->name('product.addProduct');
     Route::post('/addProduct',[ProductController::class,'post_addProduct'])->name('product.post_addProduct');
     Route::get('/search_product', [ProductController::class, 'searchProduct_admin'])->name('product.searchProductAdmin');
+    //user
+    Route::get('/listUser',[UserController::class,'listUser'])->name('user.listUser');
+    Route::get('/addUser',[UserController::class,'addUser'])->name('user.addUser');
+    Route::post('/addUser',[UserController::class,'post_addUser'])->name('postuser.addUser');
+    Route::get('/searchUserAdmin', [UserController::class, 'searchUserAdmin'])->name('user.searchUserAdmin');
+    Route::post('updateUser',[UserController::class,'updateUser'])->name('updateUser');
+    Route::get('/deleteUser-{id}',[UserController::class,'deleteUser'])->name('user.deleteUser');
 });
 
 //Cart
