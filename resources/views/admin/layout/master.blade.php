@@ -49,9 +49,6 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image-logo">
-          <img src="/images/admin.jpg" class="img-circle logo-admin" alt="User Image">
-        </div>
         <div class="info">
        <a href="#" class="d-block"><br>Admin</a>
         </div>

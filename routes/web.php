@@ -79,7 +79,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/addCategory',[CategoryController::class,'post_addCategory'])->name('category.post_addCategory');
     Route::get('getdataedtcategory/id{id}', [CategoryController::class, 'editCategory'])->name('getdataedtcategory');
     Route::post('editcategory',[CategoryController::class,'updateCategory'])->name('editcategory');
-    Route::get('/delCategory-{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
+    Route::get('delCategory/id{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
 
     Route::get('/getcategories', [CategoryController::class, 'getCategories'])->name('getcategories');
 
