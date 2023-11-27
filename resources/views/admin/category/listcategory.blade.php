@@ -73,7 +73,7 @@
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="{{ route('category.delCategory',['id' => $category->id ]) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                          <a class="btn btn-danger btn-sm" href="{{ route('category.delCategory', $category->id ) }}">
                               <i class="fas fa-trash">
                               </i>
                               Delete
@@ -84,8 +84,6 @@
               </tbody>
           </table>
           <div class=""><br>    
-            {{$categories ->appends(request()->all())->links()}}
-        {{-- {{$categories ->links()}} --}}
           </div>
         </div>
         <!-- /.card-body -->
