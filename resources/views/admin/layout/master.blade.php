@@ -106,19 +106,15 @@
                   <p>ADD Voucher</p>
                 </a>
               </li>
-<<<<<<< HEAD
+              
               <li class="nav-item buttom-nav">
-                 <a href="{{route('orders')}}" class="nav-link"> 
-=======
-              <li class="nav-item">
                  <a href="{{route('user.listUser')}}" class="nav-link"> 
                   <i class="far nav-icon"></i>
                   <p>User</p>
                 </a>
               </li>
-              <li class="nav-item">
-                 <a href="#" class="nav-link"> 
->>>>>>> d6c900e2e5fc767dfa660f874bf5d30c4879730e
+              <li class="nav-item buttom-nav">
+                <a href="{{route('orders')}}" class="nav-link"> 
                   <i class="far nav-icon"></i>
                   <p>List Oders</p>
                 </a>
