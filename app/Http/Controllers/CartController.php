@@ -17,7 +17,7 @@ class CartController extends Controller
         if (Auth::check()) {
             $id_user = Auth::user()->id;
             $productsCart = DB::table('cart_details')->join('products', 'products.id', '=', 'cart_details.id_product')->where('cart_details.id_user', '=', $id_user)->select('products.*', 'cart_details.quantity', DB::raw('cart_details.quantity * products.price as totalPrice'))->get();
-            return view('cart/cart', compact('productsCart'));
+            return view('cart/cart', compact('productsCart','id_user'));
         }
         return redirect('login');
     }

@@ -16,18 +16,33 @@ class CheckoutController extends Controller
 
         return view('check_out.checkout', compact('user','countries'));
     }
-    public function saveUserInfo(Request $request)
+
+    function store(Request $request)
     {
-        $user = new AddressUser();
-        $user->first_name = $request->input('firstName');
-        $user->last_name = $request->input('lastName');
-        $user->email_address = $request->input('email');
-        $user->user_name = $request->input('username');
-        $user->address = $request->input('address');
-        $user->country = $request->input('country');
-        $user->state = $request->input('state');
-        $user->zip = $request->input('zip');
-        $user->save();
-        return redirect()->back()->with('success', 'Order placed successfully!');
+        $validatedData = $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'username' => 'required',
+            'email' => 'required|email',
+            'address' => 'required',
+            'address2' => 'nullable',
+            'country' => 'required',
+            'state' => 'required',
+            'zip' => 'required',
+        ]);
+
+        AddressUser::create([
+            'first_name' => $validatedData['firstName'],
+            'last_name' => $validatedData['lastName'],
+            'user_name' => $validatedData['username'],
+            'email_address' => $validatedData['email'],
+            'address' => $validatedData['address'],
+            'address_2' => $validatedData['address2'],
+            'country' => $validatedData['country'],
+            'state' => $validatedData['state'],
+            'zip' => $validatedData['zip'],
+        ]);
+        return 'thanh cong';
+        // Redirect or perform additional actions after storing the address information
     }
 }

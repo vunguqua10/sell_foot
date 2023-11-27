@@ -107,7 +107,9 @@ session(['productsCart' => $productsCart]);
                         <hr>
                     </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a href="checkout" class="ml-auto btn hvr-hover">{{ __('label.checkout') }}</a> </div>
+                {{-- @php dd($id_user); @endphp --}}
+                <div class="col-12 d-flex shopping-box"><a href="{{ route('check_out') }}" class="ml-auto btn hvr-hover">{{ __('label.checkout') }}</a> </div>
+
             </div>
 
         </div>

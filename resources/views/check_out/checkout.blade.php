@@ -51,7 +51,7 @@
                         <div class="title-left">
                             <h3>Billing address</h3>
                         </div>
-                        <form class="needs-validation" action="{{route('save_infor')}}" method="POST" novalidate>
+                        <form class="needs-validation" action="" method="post" novalidate>
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -108,15 +108,15 @@
                                     <div class="invalid-feedback"> Zip code required. </div>
                                 </div>
                             </div>
-                            <hr class="mb-4">
-                            <div class="custom-control custom-checkbox">
+                            {{-- <hr class="mb-4"> --}}
+                            {{-- <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="same-address">
                                 <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
                             </div>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="save-info">
                                 <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                            </div>
+                            </div> --}}
                             <hr class="mb-4">
                             <div class="title"> <span>Payment</span> </div>
                             <div class="d-block my-3">
@@ -131,7 +131,7 @@
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
                     <div class="row">
-                        <div class="col-md-12 col-lg-12">
+                        {{-- <div class="col-md-12 col-lg-12">
                             <div class="shipping-method-box">
                                 <div class="title-left">
                                     <h3>Shipping Method</h3>
@@ -150,7 +150,7 @@
                                         <label class="custom-control-label" for="shippingOption3">Next Business day</label> <span class="float-right font-weight-bold">20000d</span> </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-12 col-lg-12">
                             <div class="odr-box">
                                 <div class="title-left">
@@ -202,10 +202,10 @@
                                     <h4>Tax</h4>
                                     <div class="ml-auto font-weight-bold"> $ 2 </div>
                                 </div>
-                                <div class="d-flex">
+                                {{-- <div class="d-flex">
                                     <h4>Shipping Cost</h4>
                                     <div class="ml-auto font-weight-bold"> Free </div>
-                                </div>
+                                </div> --}}
                                 <hr>
                                 <div class="d-flex gr-total">
                                     <h5>Grand Total</h5>
