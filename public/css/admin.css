@@ -17,3 +17,8 @@
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 20px;
 }
+li.nav-item.buttom-nav {
+    margin-bottom: 17px;
+    border-radius: 50px;
+    border: 1px solid #fff;
+}
