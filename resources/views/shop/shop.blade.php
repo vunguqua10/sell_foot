@@ -52,42 +52,39 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                                     <div class="row">
-                                    @foreach($products as $product)
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div class="products-single fix">
-                                                <div class="box-img-hover">
-                                                    <div class="type-lb">
-                                                        <p class="sale">Sale</p>
+                                        @foreach($productsPaginated as $product)
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 products-singles" data-category="{{ $product->name }}">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <div class="type-lb">
+                                                            <p class="sale">Giảm giá</p>
+                                                        </div>
+                                                        <img src="{{asset('images')}}/{{$product->photo}}" class="img-fluid" alt="Hình ảnh">
+                                                        <div class="mask-icon">
+                                                            <ul>
+                                                                <li><a href="{{route('show_detail',$product->id)}}" data-toggle="tooltip" data-placement="right" title="{{ __('label.view') }}"><i class="fas fa-eye"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="{{ __('label.compare') }}"><i class="fas fa-sync-alt"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="{{ __('label.wishslist') }}"><i class="far fa-heart"></i></a></li>
+                                                            </ul>
+                                                            <a class="cart" href="#">{{ __('label.addtocart') }}</a>
+                                                        </div>
                                                     </div>
-                                                    <img src="{{asset('images')}}/{{$product->photo}}" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <ul>
-                                                            <li><a href="{{route('show_detail',$product->id)}}"data-toggle="tooltip" data-placement="right" title="{{ __('label.view') }}"><i class="fas fa-eye"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="{{ __('label.compare') }}"><i class="fas fa-sync-alt"></i></a></li>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="{{ __('label.wishslist') }}"><i class="far fa-heart"></i></a></li>
-                                                        </ul>
-                                                        <a class="cart" href="#">{{ __('label.addtocart') }}</a>
+                                                    <div class="why-text">
+                                                        <h4>{{$product->name}}</h4>
+                                                        <h5>{{$product->price}}đ</h5>
                                                     </div>
-                                                </div>
-                                                <div class="why-text">
-                                                    <h4>{{$product->name}}</h4>
-
-                                                    <h5>{{$product->price}}đ</h5>
-
-
                                                 </div>
                                             </div>
-                                        </div>
                                         @endforeach
                                     </div>
-                                    {{ $products->links('custompagination') }}
+                                    {{ $productsPaginated->links('custompagination') }}
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane fade" id="list-view">
                                     <div class="list-view-box">
                                         <div class="row">
-                                        @foreach($products as $product)
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                        @foreach($productsPaginated as $product)
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 products-singles" data-category="{{ $product->name }}">
                                                 <div class="products-single fix">
                                                     <div class="box-img-hover">
                                                         <div class="type-lb">
@@ -114,7 +111,7 @@
                                             </div>
                                             @endforeach
                                         </div>
-                                        {{ $products->links('custompagination') }}
+                                        {{ $productsPaginated->links('custompagination') }}
                                     </div>
                                 </div>
                             </div>
@@ -134,43 +131,59 @@
                                 <h3>Categories</h3>
                             </div>
                             <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
-                                <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Phân loại<small class="text-muted"></small>
-								</a>
-                                    <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
-                                        <div class="list-group">
-                                            
-                                            <a href="#" class="list-group-item list-group-item-action active">Fruits 1 <small class="text-muted"></small></a>
+                                @foreach($categories as $categoryId => $categoryName)
+                                    @php
+                                        $instock = 0;
+                                        $hasProducts = false;
+                                    @endphp
+
+                                    <div class="list-group-collapse sub-men">
+                                        <a class="list-group-item list-group-item-action" href="#sub-men{{ $categoryId }}" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men{{ $categoryId }}">
+                                            {{ $categoryName }}
+                                            @foreach($products as $product)
+                                                @if($product->id_category == $categoryId)
+                                                    @php
+                                                        $remainingStock = $product->instock - $product->sold;
+                                                        $instock += max($remainingStock, 0);
+                                                        if ($instock > 0) {
+                                                            $hasProducts = true;
+                                                        }
+                                                    @endphp
+                                                @endif
+                                            @endforeach
+                                            @if($hasProducts)
+                                                <small class="text-muted">({{ $instock }})</small>
+                                            @else
+                                                <small class="text-muted">(Hết hàng)</small>
+                                            @endif
+                                        </a>
+
+                                        <div class="collapse show" id="sub-men{{ $categoryId }}" data-parent="#list-group-men">
+                                            <div class="list-group">
+                                                @foreach($products as $product)
+                                                @if($product->id_category == $categoryId)
+                                                    @php
+                                                        $remainingStock = $product->instock - $product->sold;
+
+                                                    @endphp
+                                                        <a href="#" class="list-group-item list-group-item-action category-link" data-category="{{ $product->name }}">
+                                                            {{ $product->name }}
+                                                            @if($product->outOfStock || $remainingStock <= 0)
+                                                                <small class="text-muted">(Hết hàng)</small>
+                                                            @else
+                                                                <small class="text-muted">({{ $remainingStock }})</small>
+                                                            @endif
+                                                        </a>
+                                                @endif
+                                            @endforeach
+
+                                                @if(!$hasProducts)
+                                                    <p>Không có sản phẩm tồn tại</p>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Vegetables
-								<small class="text-muted">(50)</small>
-								</a>
-                                    <div class="collapse" id="sub-men2" data-parent="#list-group-men">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">Vegetables 1 <small class="text-muted">(10)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Vegetables 2 <small class="text-muted">(20)</small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">Vegetables 3 <small class="text-muted">(20)</small></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#" class="list-group-item list-group-item-action"> Grocery  <small class="text-muted">(150) </small></a>
-                                <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(11)</small></a>
-                                <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(22)</small></a>
-                            </div>
-                        </div>
-                        <div class="filter-price-left">
-                            <div class="title-left">
-                                <h3>Price</h3>
-                            </div>
-                            <div class="price-box-slider">
-                                <div id="slider-range"></div>
-                                <p>
-                                    <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
-                                    <button class="btn hvr-hover" type="submit">Filter</button>
-                                </p>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -269,3 +282,14 @@
 
 
 @include('footer.footer')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.category-link').click(function(e) {
+            e.preventDefault();
+            var categoryId = $(this).data('category');
+            $('.products-singles').hide();
+            $('.products-singles[data-category="' + categoryId + '"]').show();
+        });
+    });
+</script>
