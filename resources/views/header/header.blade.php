@@ -68,7 +68,7 @@
                     <i CLASS="fas fa-search fa-sm"></i>
                     </button>
                      </form>
-                     
+
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
 
                         <li class="nav-item active"><a class="nav-link" href="{{route('home')}}">{{ __('label.home') }}</a></li>
@@ -82,6 +82,7 @@
                                 <li><a href="{{route('check_out')}}">{{ __('label.checkout') }}</a></li>
                                 <li><a href="{{route('my_account')}}">{{ __('label.myaccount') }}</a></li>
                                 <li><a href="{{route('wishlist')}}">{{ __('label.wishlist') }}</a></li>
+                                <li><a href="{{route('history_payment')}}">History Payment</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{route('gallery')}}">{{ __('label.gallery') }}</a></li>
@@ -93,7 +94,6 @@
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-
                         <li class="side-menu">
                             <a href="#">
                                 <i class="fa fa-shopping-bag"></i>
