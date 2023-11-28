@@ -142,8 +142,9 @@ Route::get('searchvoucher', [VoucherController::class, 'searchVoucher'])->name('
 Route::get('view-detail/{id}', [CustomProductsController::class,'viewDetailProducts'])->name('show_detail');
 
 //Checkout
-Route::get('show_checkout/{user_id}', [CheckoutController::class,'showCheckout'])->name('show_checkout');
-Route::post('checkout', [CheckoutController::class,'store'])->name('store');
+
+Route::get('checkout/{user_id}', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('checkout/{user_id}', [CheckoutController::class, 'store'])->name('store');
 
 // Multilang
 Route::get('change-language/{language}', [LangController::class, 'changeLanguage'])->name('change-language');

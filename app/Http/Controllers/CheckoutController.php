@@ -10,39 +10,42 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
-    function showCheckout($user_id) {
-
-        $user = AddressUser::find($user_id);
-
-        return view('check_out.checkout', compact('user','countries'));
+    public function index($user_id)
+    {
+        $user = AddressUser::where('id', $user_id);
+        // dd($user_id);
+        return view('check_out.checkout', compact('user', 'user_id'));
     }
 
-    function store(Request $request)
+    public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'username' => 'required',
-            'email' => 'required|email',
-            'address' => 'required',
-            'address2' => 'nullable',
-            'country' => 'required',
-            'state' => 'required',
-            'zip' => 'required',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'firstName' => 'required',
+                'lastName' => 'required',
+                'username' => 'required',
+                'email' => 'required|email',
+                'address' => 'required',
+                'address2' => 'nullable',
+                'country' => 'required',
+                'state' => 'required',
+                'zip' => 'required',
+            ]);
 
-        AddressUser::create([
-            'first_name' => $validatedData['firstName'],
-            'last_name' => $validatedData['lastName'],
-            'user_name' => $validatedData['username'],
-            'email_address' => $validatedData['email'],
-            'address' => $validatedData['address'],
-            'address_2' => $validatedData['address2'],
-            'country' => $validatedData['country'],
-            'state' => $validatedData['state'],
-            'zip' => $validatedData['zip'],
-        ]);
-        return 'thanh cong';
-        // Redirect or perform additional actions after storing the address information
+            AddressUser::create([
+                'first_name' => $validatedData['firstName'],
+                'last_name' => $validatedData['lastName'],
+                'user_name' => $validatedData['username'],
+                'email_address' => $validatedData['email'],
+                'address' => $validatedData['address'],
+                'address_2' => $validatedData['address2'],
+                'country' => $validatedData['country'],
+                'state' => $validatedData['state'],
+                'zip' => $validatedData['zip'],
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Có lỗi xảy ra. Vui lòng thử lại sau.']);
+        }
     }
 }

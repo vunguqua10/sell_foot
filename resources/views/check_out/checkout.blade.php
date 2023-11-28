@@ -51,72 +51,66 @@
                         <div class="title-left">
                             <h3>Billing address</h3>
                         </div>
-                        <form class="needs-validation" action="" method="post" novalidate>
+                        @php
+                            // dd($user_id);
+                        @endphp
+                        <form class="needs-validation" action="{{ route('store',$user_id)}}" method="post" novalidate>
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="firstName">First name *</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required>
                                     <div class="invalid-feedback"> Valid first name is required. </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="lastName">Last name *</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
                                     <div class="invalid-feedback"> Valid last name is required. </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="username">Username *</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="username" placeholder="" required>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="" required>
                                     <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="email">Email Address *</label>
-                                <input type="email" class="form-control" id="email" placeholder="">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="">
                                 <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address">Address *</label>
-                                <input type="text" class="form-control" id="address" placeholder="" required>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="" required>
                                 <div class="invalid-feedback"> Please enter your shipping address. </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address2">Address 2 *</label>
-                                <input type="text" class="form-control" id="address2" placeholder=""> </div>
+                                <input type="text" class="form-control" id="address2" name="address2" placeholder=""> </div>
                             <div class="row">
                                 <div class="col-md-5 mb-3">
                                     <label for="country">Country *</label>
-                                <select class="wide w-100" id="country">
-									<option value="Choose..." data-display="Select">Choose...</option>
-									<option value="United States">United States</option>
-								</select>
+                                    <select class="wide w-100" id="country" name="country">
+                                        <option value="Choose..." data-display="Select">Choose...</option>
+                                        <option value="United States">United States</option>
+                                    </select>
                                     <div class="invalid-feedback"> Please select a valid country. </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="state">State *</label>
-                                    <select class="wide w-100" id="state">
-									<option data-display="Select">Choose...</option>
-									<option>California</option>
-								</select>
+                                    <select class="wide w-100" id="state" name="state">
+                                        <option data-display="Select">Choose...</option>
+                                        <option>California</option>
+                                    </select>
                                     <div class="invalid-feedback"> Please provide a valid state. </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="zip">Zip *</label>
-                                    <input type="text" class="form-control" id="zip" placeholder="" required>
+                                    <input type="text" class="form-control" id="zip" name="zip" placeholder="" required>
                                     <div class="invalid-feedback"> Zip code required. </div>
                                 </div>
                             </div>
-                            {{-- <hr class="mb-4"> --}}
-                            {{-- <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="same-address">
-                                <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="save-info">
-                                <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                            </div> --}}
                             <hr class="mb-4">
                             <div class="title"> <span>Payment</span> </div>
                             <div class="d-block my-3">
@@ -126,31 +120,12 @@
                                 </div>
                             </div>
                             <hr class="mb-1">
+                            <button id="placeOrderBtn" type="submit" class="btn btn-primary">Place Order</button>
                         </form>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
                     <div class="row">
-                        {{-- <div class="col-md-12 col-lg-12">
-                            <div class="shipping-method-box">
-                                <div class="title-left">
-                                    <h3>Shipping Method</h3>
-                                </div>
-                                <div class="mb-4">
-                                    <div class="custom-control custom-radio">
-                                        <input id="shippingOption1" name="shipping-option" class="custom-control-input" checked="checked" type="radio">
-                                        <label class="custom-control-label" for="shippingOption1">Standard Delivery</label> <span class="float-right font-weight-bold">FREE</span> </div>
-                                    <div class="ml-4 mb-2 small">(3-7 business days)</div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="shippingOption2" name="shipping-option" class="custom-control-input" type="radio">
-                                        <label class="custom-control-label" for="shippingOption2">Express Delivery</label> <span class="float-right font-weight-bold">10000đ</span> </div>
-                                    <div class="ml-4 mb-2 small">(2-4 business days)</div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="shippingOption3" name="shipping-option" class="custom-control-input" type="radio">
-                                        <label class="custom-control-label" for="shippingOption3">Next Business day</label> <span class="float-right font-weight-bold">20000d</span> </div>
-                                </div>
-                            </div>
-                        </div> --}}
                         <div class="col-md-12 col-lg-12">
                             <div class="odr-box">
                                 <div class="title-left">
@@ -198,14 +173,6 @@
                                     <h4>Coupon Discount</h4>
                                     <div class="ml-auto font-weight-bold"> $ 10 </div>
                                 </div>
-                                <div class="d-flex">
-                                    <h4>Tax</h4>
-                                    <div class="ml-auto font-weight-bold"> $ 2 </div>
-                                </div>
-                                {{-- <div class="d-flex">
-                                    <h4>Shipping Cost</h4>
-                                    <div class="ml-auto font-weight-bold"> Free </div>
-                                </div> --}}
                                 <hr>
                                 <div class="d-flex gr-total">
                                     <h5>Grand Total</h5>
@@ -213,13 +180,16 @@
                                 </div>
                                 <hr> </div>
                         </div>
-                        <div class="col-12 d-flex shopping-box"> <a href="{{route('check_out')}}" class="ml-auto btn hvr-hover">Place Order</a> </div>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+    <div id="successMessage" style="display: none;">
+        Payment processed successfully!
+    </div>
+
     <!-- End Cart -->
 
     {{-- <!-- Start Instagram Feed  -->
@@ -312,5 +282,24 @@
 
 @include('footer.footer')
 <script>
-
+    document.getElementById('placeOrderBtn').addEventListener('click', function(event) {
+        event.preventDefault();
+        fetch('{{ route('store',$user_id) }}', {
+            method: 'post',
+            body: new FormData(document.querySelector('form.needs-validation'))
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.error) {
+                alert(data.error);
+            } else {
+                document.getElementById('successMessage').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert('An error occurred while processing the payment.');
+        });
+    });
 </script>
