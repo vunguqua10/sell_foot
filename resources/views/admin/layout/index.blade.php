@@ -55,9 +55,9 @@
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h3>...<sup style="font-size: 20px"></sup></h3>
+                <h3>{{$user_count}}<sup style="font-size: 20px"></sup></h3>
 
-                <p>List Order</p>
+                <p>All User</p>
               </div>
               <div class="icon">
                 <i class="ion ion-arrow-graph-up-right"></i>
@@ -71,7 +71,7 @@
               <div class="inner">
                 <h3>...<sup style="font-size: 20px"></sup></h3>
 
-                <p>khach hang</p>
+                <p>List Order</p>
               </div>
               <div class="icon">
                 <i class="ion ion-android-contact"></i>
@@ -81,8 +81,24 @@
           </div> 
           <!-- ./col -->
         </div>
-     
-    </section>
+        <h2>Sản phẩm xem nhiều</h2>
+                <div class="product-table">
+                  <div class="table-row header">
+                    <div class="table-cell">Tên sản phẩm</div>
+                    <div class="table-cell">Lượt xem</div>
+                  </div>
+                  @foreach($product_views as $product)
+                    <div class="table-row">
+                      <div class="table-cell">
+                        <a target="_blank" href="{{ url('/view-detail/'.$product->id) }}">
+                          {{ $product->name }}
+                        </a>
+                      </div>
+                      <div class="table-cell">{{ $product->product_views }}</div>
+                    </div>
+                  @endforeach
+               </div>
+         </section>
   </div>
     <!-- /.content -->
    @endsection
