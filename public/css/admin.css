@@ -22,3 +22,29 @@ li.nav-item.buttom-nav {
     border-radius: 50px;
     border: 1px solid #fff;
 }
+.product-table {
+    display: table;
+    width: 100%;
+  }
+  
+  .table-row {
+    display: table-row;
+  }
+  
+  .header {
+    font-weight: bold;
+  }
+  
+  .table-cell {
+    display: table-cell;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .table-cell:first-child {
+    width: 30%;
+  }
+  
+  .table-cell:last-child {
+    width: 30%;
+  }

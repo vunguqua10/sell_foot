@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('id_category', 100);
             $table->string('photo');
             $table->timestamps();
+            $table->integer('product_views')->default(0);
         });
     }
 
