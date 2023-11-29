@@ -143,8 +143,8 @@ Route::get('view-detail/{id}', [CustomProductsController::class,'viewDetailProdu
 
 //Checkout
 
-Route::get('checkout/{user_id}', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('checkout/{user_id}', [CheckoutController::class, 'store'])->name('store');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout/{id}', [CheckoutController::class, 'store'])->name('store');
 
 // Multilang
 Route::get('change-language/{language}', [LangController::class, 'changeLanguage'])->name('change-language');
