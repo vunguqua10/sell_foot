@@ -94,8 +94,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/listUser',[UserController::class,'listUser'])->name('user.listUser');
     Route::get('/addUser',[UserController::class,'addUser'])->name('user.addUser');
     Route::post('/addUser',[UserController::class,'post_addUser'])->name('postuser.addUser');
+    Route::post('customUser', [UserController::class, 'customUser'])->name('customUser.custom');
     Route::get('/searchUserAdmin', [UserController::class, 'searchUserAdmin'])->name('user.searchUserAdmin');
-    Route::post('updateUser',[UserController::class,'updateUser'])->name('updateUser');
+    Route::get('getdataedtuser/id{id}', [UserController::class, 'editUser'])->name('getdataedtuser');
+    Route::post('edituser', [UserController::class, 'updateUser'])->name('edituser');
     Route::get('/deleteUser-{id}',[UserController::class,'deleteUser'])->name('user.deleteUser');
 });
 

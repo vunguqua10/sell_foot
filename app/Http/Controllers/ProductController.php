@@ -27,14 +27,24 @@ class ProductController extends Controller
     public function customProduct(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|min:3',
             'description' => 'required',
-            'price' => 'required',
-            'instock' => 'required',
-            'sold' => 'required',
+            'price' => 'required|numeric|min:4',
+            'instock' => 'required|numeric',
+            'sold' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) use ($request) {
+                    $instock = $request->input('instock');
+                    if ($value >= $instock) {
+                        $fail('Số "sold" phải nhỏ hơn số "instock".');
+                    }
+                }
+            ],
             'id_category' => 'required',
             'photo' => 'required',
         ]);
+        // Kiểm tra sự tồn tại của sản phẩm
         $file = $request->file('photo');
         $path = 'images';
         $fileName = $file->getClientOriginalName();

@@ -55,6 +55,7 @@
                   <tr>
                       <th style="width: 5%">ID</th>
                       <th style="width: 5%">UserName</th>
+                      <th style="width: 5%">Email</th>
                       <th style="width: 5%">Action</th>
                   </tr>
               </thead>
@@ -65,8 +66,11 @@
                       <td>
                           <a>{{ $user -> name }}</a>
                       </td>
+                      <td>
+                          <a>{{ $user -> email }}</a>
+                      </td>
                       <td class="project-actions">
-                          <a class="btn btn-info btn-sm" href="">
+                          <a class="btn btn-info btn-sm" href="{{route('getdataedtuser',$user->id)}}">
                              
                             <i class="fas fa-pencil-alt">
                                 
