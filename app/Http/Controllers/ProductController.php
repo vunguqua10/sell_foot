@@ -102,7 +102,7 @@ class ProductController extends Controller
     {
         $keyword = $request->keyword;
         $products = Product::where('name', 'LIKE', '%' . $keyword . '%')->paginate(3);
-        return view('shop/shop', compact('products'));
+        return view('shop/shopsearch', compact('products'));
     }
     public function searchProduct_Admin(Request $request)
     {
