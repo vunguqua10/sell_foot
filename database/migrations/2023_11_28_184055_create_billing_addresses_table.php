@@ -4,27 +4,27 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddressUserTable extends Migration
+class CreateBillingAddressesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() : void
+    public function up()
     {
-        Schema::create('address_user', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('firt_name');
+        Schema::create('billing_addresses', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('first_name');
             $table->string('last_name');
-            $table->string('user_name');
-            $table->string('email_address',100);
+            $table->string('username');
+            $table->string('email')->nullable();
             $table->string('address');
-            $table->string('address_2');
+            $table->string('address2')->nullable();
             $table->string('country');
             $table->string('state');
-            $table->integer('zip');
+            $table->string('zip');
+            $table->decimal('total_price', 8, 2);
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateAddressUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address_user');
+        Schema::dropIfExists('billing_addresses');
     }
 }

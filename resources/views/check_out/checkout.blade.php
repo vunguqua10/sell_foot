@@ -1,8 +1,4 @@
 @include('header.header')
-@php
-    $cartCheckout = session('productsCart');
-    $totalPriceSum = 0;
-@endphp
     <!-- Start All Title Box -->
     <div class="all-title-box">
         <div class="container">
@@ -46,82 +42,82 @@
 
             </div>
             <div class="row">
+                <div class="col-12">
+                    <div id="errorContainer" class="alert alert-danger" style="display: none;"></div>
+                </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
                     <div class="checkout-address">
                         <div class="title-left">
                             <h3>Billing address</h3>
                         </div>
-                        @php
-                            // dd($user_id);
-                        @endphp
-                        <form class="needs-validation" action="{{ route('store',$user_id)}}" method="post" novalidate>
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="firstName">First name *</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required>
-                                    <div class="invalid-feedback"> Valid first name is required. </div>
+                            <form class="needs-validation" id="paymentForm" action="{{ route('store',$user->id)}}" method="post" novalidate >
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName">First name *</label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="{{$user->firt_name}}" required>
+                                        <div class="invalid-feedback"> Valid first name is required. </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName">Last name *</label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="{{$user->last_name}}" required>
+                                        <div class="invalid-feedback"> Valid last name is required. </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="lastName">Last name *</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
-                                    <div class="invalid-feedback"> Valid last name is required. </div>
+                                <div class="mb-3">
+                                    <label for="username">Username *</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="" value="{{$user->username}}" required>
+                                        <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="username">Username *</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="" required>
-                                    <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
+                                <div class="mb-3">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="" value="{{$user->email}}">
+                                    <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email">Email Address *</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="">
-                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address">Address *</label>
-                                <input type="text" class="form-control" id="address" name="address" placeholder="" required>
-                                <div class="invalid-feedback"> Please enter your shipping address. </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address2">Address 2 *</label>
-                                <input type="text" class="form-control" id="address2" name="address2" placeholder=""> </div>
-                            <div class="row">
-                                <div class="col-md-5 mb-3">
-                                    <label for="country">Country *</label>
-                                    <select class="wide w-100" id="country" name="country">
-                                        <option value="Choose..." data-display="Select">Choose...</option>
-                                        <option value="United States">United States</option>
-                                    </select>
-                                    <div class="invalid-feedback"> Please select a valid country. </div>
+                                <div class="mb-3">
+                                    <label for="address">Address *</label>
+                                    <input type="text" class="form-control" id="address" name="address" placeholder="" required>
+                                    <div class="invalid-feedback"> Please enter your shipping address. </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="state">State *</label>
-                                    <select class="wide w-100" id="state" name="state">
-                                        <option data-display="Select">Choose...</option>
-                                        <option>California</option>
-                                    </select>
-                                    <div class="invalid-feedback"> Please provide a valid state. </div>
+                                <div class="mb-3">
+                                    <label for="address2">Address 2 *</label>
+                                    <input type="text" class="form-control" id="address2" name="address2" placeholder=""> </div>
+                                <div class="row">
+                                    <div class="col-md-5 mb-3">
+                                        <label for="country">Country *</label>
+                                        <select class="wide w-100" id="country" name="country" required>
+                                            <option  value="" selected disabled data-display="Select">Choose...</option>
+                                            <option value="United States">United States</option>
+                                        </select>
+                                        <div class="invalid-feedback"> Please select a valid country. </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="state">State *</label>
+                                        <select class="wide w-100" id="state" name="state" required>
+                                            <option value="" selected disabled data-display="Select">Choose...</option>
+                                            <option >California</option>
+                                        </select>
+                                        <div class="invalid-feedback"> Please provide a valid state. </div>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="zip">Zip *</label>
+                                        <input type="text" class="form-control" id="zip" name="zip" placeholder=""  pattern="\d{4}" required>
+                                        <div class="invalid-feedback"> Zip code required. </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="zip">Zip *</label>
-                                    <input type="text" class="form-control" id="zip" name="zip" placeholder="" required>
-                                    <div class="invalid-feedback"> Zip code required. </div>
+                                <hr class="mb-4">
+                                <div class="title"> <span>Payment</span> </div>
+                                <div class="d-block my-3">
+                                    <div class="custom-control custom-radio">
+                                        <input id="cod" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                        <label class="custom-control-label" for="credit">COD</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr class="mb-4">
-                            <div class="title"> <span>Payment</span> </div>
-                            <div class="d-block my-3">
-                                <div class="custom-control custom-radio">
-                                    <input id="cod" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                                    <label class="custom-control-label" for="credit">COD</label>
-                                </div>
-                            </div>
-                            <hr class="mb-1">
-                            <button id="placeOrderBtn" type="submit" class="btn btn-primary">Place Order</button>
-                        </form>
+                                <hr class="mb-1">
+                                <button id="placeOrderBtn" type="submit" class="btn btn-primary" >Place Order</button>
+                            </form>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
@@ -132,21 +128,22 @@
                                     <h3>Shopping cart</h3>
                                 </div>
                                 <div class="rounded p-2 bg-light">
-                                    @foreach($cartCheckout as $item)
-                                        <div class="media mb-2 border-bottom">
-                                            <div class="media-body">
-                                                <a href="{{ route('show_detail',$item->id) }}">{{ $item->name}}</a>
-                                                <div class="small text-muted">
-                                                    Price: {{ $item->price }}đ
-                                                    <span class="mx-2">|</span> Qty: {{ $item->quantity }}
-                                                    <span class="mx-2">|</span> Subtotal: {{ $item->totalPrice}}đ
+                                    @if ($cartCheckout->count() > 0)
+                                        @foreach($cartCheckout as $item)
+                                            <div class="media mb-2 border-bottom">
+                                                <div class="media-body">
+                                                    <a href="{{ route('show_detail', $item->id) }}">{{ $item->name }}</a>
+                                                    <div class="small text-muted">
+                                                        Price: {{ $item->price }}đ
+                                                        <span class="mx-2">|</span> Qty: {{ $item->quantity }}
+                                                        <span class="mx-2">|</span> Subtotal: {{ $item->totalPrice }}đ
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        @php
-                                            $totalPriceSum += $item->totalPrice;
-                                        @endphp
-                                    @endforeach
+                                        @endforeach
+                                    @else
+                                        <p>Không có sản phẩm</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -155,151 +152,74 @@
                                 <div class="title-left">
                                     <h3>Your order</h3>
                                 </div>
-                                <div class="d-flex">
-                                    <div class="font-weight-bold">Product</div>
-                                    <div class="ml-auto font-weight-bold">Total</div>
-                                </div>
-                                <hr class="my-1">
-                                <div class="d-flex">
-                                    <h4>Sub Total</h4>
-                                    <div class="ml-auto font-weight-bold"> {{$totalPriceSum}}đ </div>
-                                </div>
-                                <div class="d-flex">
-                                    <h4>Discount</h4>
-                                    <div class="ml-auto font-weight-bold"> $ 40 </div>
-                                </div>
-                                <hr class="my-1">
-                                <div class="d-flex">
-                                    <h4>Coupon Discount</h4>
-                                    <div class="ml-auto font-weight-bold"> $ 10 </div>
-                                </div>
-                                <hr>
-                                <div class="d-flex gr-total">
-                                    <h5>Grand Total</h5>
-                                    <div class="ml-auto h5"> $ 388 </div>
-                                </div>
-                                <hr> </div>
+
+                                @if ($subtotal > 0)
+                                    <div class="d-flex">
+                                        <div class="font-weight-bold">Product</div>
+                                        <div class="ml-auto font-weight-bold">Total</div>
+                                    </div>
+                                    <hr class="my-1">
+                                    <div class="d-flex">
+                                        <h4>Sub Total</h4>
+                                        <div class="ml-auto font-weight-bold">{{$subtotal}}đ</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <h4>Discount</h4>
+                                        <div class="ml-auto font-weight-bold">$ 40</div>
+                                    </div>
+                                    <hr class="my-1">
+                                    <div class="d-flex">
+                                        <h4>Coupon Discount</h4>
+                                        <div class="ml-auto font-weight-bold">$ 10</div>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex gr-total">
+                                        <h5>Grand Total</h5>
+                                        <div class="ml-auto h5">${{$grandTotal}}</div>
+                                    </div>
+                                    <hr>
+                                @else
+                                    <p>Không có sản phẩm</p>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-    </div>
-    <div id="successMessage" style="display: none;">
-        Payment processed successfully!
-    </div>
-
-    <!-- End Cart -->
-
-    {{-- <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
+                {{-- <div id="message" style="display: none; color: red;">Vui lòng mua hàng trước khi đặt hàng.</div> --}}
             </div>
         </div>
     </div>
-    <!-- End Instagram Feed  --> --}}
-
-
 @include('footer.footer')
+
 <script>
-    document.getElementById('placeOrderBtn').addEventListener('click', function(event) {
+    var form = document.getElementById("paymentForm");
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
-        fetch('{{ route('store',$user_id) }}', {
-            method: 'post',
-            body: new FormData(document.querySelector('form.needs-validation'))
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data.error) {
-                alert(data.error);
-            } else {
-                document.getElementById('successMessage').style.display = 'block';
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            alert('An error occurred while processing the payment.');
-        });
+
+        var selectedProducts = document.querySelectorAll('input[type="checkbox"]:checked');
+
+        if (selectedProducts.length === 0) {
+            var errorContainer = document.querySelector('.invalid-feedback');
+            errorContainer.innerHTML = 'Please select at least one product.';
+            errorContainer.style.display = 'block';
+        } else if (form.checkValidity() === false) {
+            var errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = 'Please fill in all required fields.';
+            errorContainer.style.display = 'block';
+        } else {
+            var formData = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", form.action, true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert("Order placed successfully!");
+                } else {
+                    alert("Order placement failed!");
+                }
+            };
+            xhr.send(formData);
+        }
+
+        form.classList.add('was-validated');
     });
 </script>

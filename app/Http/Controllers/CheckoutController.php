@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AddressUser;
+use App\Models\BillingAddress;
 use App\Models\User;
 use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
@@ -10,42 +10,77 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
-    public function index($user_id)
+    public function store(Request $request, $id)
     {
-        $user = AddressUser::where('id', $user_id);
-        // dd($user_id);
-        return view('check_out.checkout', compact('user', 'user_id'));
+        // Validate dữ liệu form
+        $validatedData = $request->validate([
+            'firstName' => 'required|min:2|max:50',
+            'lastName' => 'required|min:2|max:50',
+            'username' => 'required|min:2|max:50',
+            'email' => 'required|email',
+            'address' => 'required|max:50',
+            'address2' => 'nullable|max:50',
+            'country' => 'required',
+            'state' => 'required',
+            'zip' => 'required|regex:/^\d{4}$/',
+        ]);
+
+        // Tìm người dùng bằng ID
+        $user = User::findOrFail($id);
+
+        // Điền thông tin địa chỉ thanh toán của người dùng
+        $user->fill($validatedData);
+        $user->save();
+
+        // Xử lý thanh toán (giả sử là COD - tiền mặt khi nhận hàng)
+        // Bạn có thể thêm logic xử lý thanh toán của riêng bạn ở đây
+
+        // Tính tổng số tiền đơn hàng cuối cùng
+        $subtotal = 0;
+        $cartCheckout = $request->session()->get('productsCart');
+        foreach ($cartCheckout as $item) {
+            $subtotal += $item->totalPrice;
+        }
+
+        $discount = 40;
+        $couponDiscount = 10;
+        $grandTotal = $subtotal - $discount - $couponDiscount;
+
+        // Lưu địa chỉ thanh toán vào cơ sở dữ liệu
+        $billingAddress = new BillingAddress();
+        $billingAddress->first_name = $validatedData['firstName'];
+        $billingAddress->last_name = $validatedData['lastName'];
+        $billingAddress->username = $validatedData['username'];
+        $billingAddress->email = $validatedData['email'];
+        $billingAddress->address = $validatedData['address'];
+        $billingAddress->address2 = $validatedData['address2'];
+        $billingAddress->country = $validatedData['country'];
+        $billingAddress->state = $validatedData['state'];
+        $billingAddress->zip = $validatedData['zip'];
+        $billingAddress->total_price = $grandTotal;
+        $billingAddress->save();
+
+        $request->session()->forget('productsCart');
+
+
+        return view('check_out.checkout', compact('user', 'cartCheckout', 'subtotal', 'discount', 'couponDiscount', 'grandTotal'));
+        // // Hiển thị trang xác nhận cho người dùng
+        // return view('check_out.checkout', compact('user', 'cartCheckout', 'subtotal', 'discount', 'couponDiscount', 'grandTotal'));
     }
 
-    public function store(Request $request)
+    public function index(Request $request)
     {
-        try {
-            $validatedData = $request->validate([
-                'firstName' => 'required',
-                'lastName' => 'required',
-                'username' => 'required',
-                'email' => 'required|email',
-                'address' => 'required',
-                'address2' => 'nullable',
-                'country' => 'required',
-                'state' => 'required',
-                'zip' => 'required',
-            ]);
-
-            AddressUser::create([
-                'first_name' => $validatedData['firstName'],
-                'last_name' => $validatedData['lastName'],
-                'user_name' => $validatedData['username'],
-                'email_address' => $validatedData['email'],
-                'address' => $validatedData['address'],
-                'address_2' => $validatedData['address2'],
-                'country' => $validatedData['country'],
-                'state' => $validatedData['state'],
-                'zip' => $validatedData['zip'],
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Có lỗi xảy ra. Vui lòng thử lại sau.']);
+        $user = Auth::user();
+        $cartCheckout = session('productsCart', []);
+        $subtotal = 0;
+        foreach ($cartCheckout as $item) {
+            $subtotal += $item->totalPrice;
         }
+
+        $discount = 40;
+        $couponDiscount = 10;
+        $grandTotal = $subtotal - $discount - $couponDiscount;
+        return view('check_out.checkout', compact('user', 'cartCheckout', 'subtotal', 'discount', 'couponDiscount', 'grandTotal'))->with('success', 'Thanh toán thành công!');
     }
 }
+
