@@ -94,7 +94,7 @@ class ProductController extends Controller
 
     public function listProduct()
     {
-        $products = DB::table('products')->paginate(4);
+        $products = DB::table('products')->orderBy('products.id', 'desc')->paginate(4);
         return view('admin.product.listproduct', compact('products'));
     }
 

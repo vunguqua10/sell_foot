@@ -1,4 +1,7 @@
 @include('header.header')
+@php
+session(['productsCart' => $productsCart]);
+@endphp
 @Section('content')
     <!-- Start All Title Box -->
     <div class="all-title-box">
@@ -19,58 +22,63 @@
     <!-- Start Cart  -->
     <section class="shopping-cart spad">
     <div class="cart-box-main">
+        @unless($productsCart->isEmpty())
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                <form action="{{ route('update-cart') }}" method="get">
-                    <div class="table-main table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>{{ __('label.images') }}</th>
-                                    <th>{{ __('label.product') }}</th>
-                                    <th>{{ __('label.price') }}</th>
-                                    <th>{{ __('label.quanlity') }}</th>
-                                    <th>{{ __('label.total') }}</th>
-                                    <th>{{ __('label.remove') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php $total = 0; ?>
-                            @foreach($productsCart as $productCart)
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									    <img class="img-fluid" src="{{asset('images')}}/{{$productCart->photo}}" alt="" />
-								        </a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									{{$productCart -> name}}
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>{{$productCart -> price}}đ</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="{{$productCart -> quantity}}" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>{{$productCart -> totalPrice}}đ</p>
-                                    </td>
-                                    <?php
-                                     $total += $productCart->totalPrice;
-                                ?>
-                                    <td class="remove-pr">
-                                        <a href="{{ route('remove-from-cart', $productCart->id) }}">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
-                                
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <form action="{{ route('update-cart') }}" method="get">
+                        @csrf
+                        <div class="table-main table-responsive">
+                            <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ __('label.images') }}</th>
+                                            <th>{{ __('label.product') }}</th>
+                                            <th>{{ __('label.price') }}</th>
+                                            <th>{{ __('label.quantity') }}</th>
+                                            <th>{{ __('label.total') }}</th>
+                                            <th>{{ __('label.remove') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php $total = 0; @endphp
+                                        @foreach($productsCart as $index => $productCart)
+                                            <tr>
+                                                <td class="thumbnail-img">
+                                                    <a href="#">
+                                                    <img class="img-fluid" src="{{asset('images')}}/{{$productCart->photo}}" alt="" />
+                                                    </a>
+                                                </td>
+                                                <td class="name-pr">
+                                                    <a href="#">
+                                                {{$productCart -> name}}
+                                                 </a>
+                                                </td>
+                                                <td class="price-pr" data-price="{{$productCart->price}}">
+                                                    <p>{{$productCart->price}}đ</p>
+                                                </td>
+                                                <td class="quantity-box" data-product-id="{{$productCart->id}}">
+                                                    <input type="number" size="4" value="{{$productCart->quantity}}" min="1" max="20" step="1" class="c-input-text qty text quantity-input" name="quantity_{{$productCart->id}}">
+                                                </td>
+                                                <td class="total-pr">
+                                                    <p>{{$productCart->totalPrice}}đ</p>
+                                                </td>
+                                                <?php
+                                                 $total += $productCart->totalPrice;
+                                                 ?>
+                                                <td class="remove-pr">
+                                                    <a href="{{ route('remove-from-cart', $productCart->id) }}">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+                                                </td>
+                                            </tr>
+
+                                            @endforeach
+                                    </tbody>
+
+                            </table>
+                        </div>
                     </form>
-                    </div>
                 </div>
             </div>
             <div class="row my-5">
@@ -96,17 +104,127 @@
                         <hr>
                         <div class="d-flex gr-total">
                             <h5>{{ __('label.totalcart') }}</h5>
-                            <div class="ml-auto h5">{{$total}} đ</div>
+                            <div class="ml-auto h5" id="total-amount" data-total="{{$total}}">{{$total}} đ</div>
                         </div>
-                        <hr> </div>
+                        <hr>
+                    </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a href="checkout" class="ml-auto btn hvr-hover">{{ __('label.checkout') }}</a> </div>
+                {{-- @php dd($id_user); @endphp --}}
+                <div class="col-12 d-flex shopping-box"><a href="{{ route('checkout.index') }}" class="ml-auto btn hvr-hover">{{ __('label.checkout') }}</a> </div>
             </div>
-
         </div>
+        @else
+        <p class="font-weight-bold" style="text-align: center">Không có sản phẩm</p>
+        @endunless
     </div>
 </section>
     <!-- End Cart -->
 
-    
+
 @include('footer.footer')
+<script>
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    const priceElements = document.querySelectorAll('.price-pr p');
+    const totalElements = document.querySelectorAll('.total-pr p');
+    const totalAmountElement = document.getElementById('total-amount');
+    const totalDivElement = document.querySelector('.ml-auto.h5');
+    let total = parseFloat(totalAmountElement.innerText.replace('đ', ''));
+
+    function calculateTotal() {
+        let newTotal = 0;
+        totalElements.forEach((element, index) => {
+            const price = parseFloat(priceElements[index].innerText.replace('đ', ''));
+            const quantity = parseInt(quantityInputs[index].value);
+            const totalPrice = quantity * price;
+            element.innerText = totalPrice + 'đ';
+
+            newTotal += totalPrice;
+        });
+
+        totalAmountElement.innerText = newTotal + 'đ';
+        totalDivElement.innerText = newTotal + 'đ';
+
+        total = newTotal;
+    }
+
+    function isProductInCart(productId) {
+        const storedQuantities = JSON.parse(localStorage.getItem('quantities'));
+
+        if (storedQuantities) {
+            const foundProduct = storedQuantities.find((quantity) => quantity.productId === productId);
+            return foundProduct !== undefined;
+        }
+
+        return false;
+    }
+
+    quantityInputs.forEach((input) => {
+        input.addEventListener('change', () => {
+            const productId = input.name.split('_')[1];
+            const quantity = input.value;
+
+            if (!isProductInCart(productId)) {
+                alert('Sản phẩm không tồn tại trong giỏ hàng.');
+                history.back();
+                return;
+            }
+
+            calculateTotal();
+            storeQuantity();
+        });
+    });
+
+    function storeQuantity() {
+    const quantities = Array.from(quantityInputs).map((input, index) => {
+        const productId = input.name.split('_')[1];
+        const quantity = input.value;
+
+       
+        if (isProductInCart(productId)) {
+            return { productId, quantity };
+        }
+    }).filter(Boolean); // Loại bỏ các giá trị undefined/null
+
+    localStorage.setItem('quantities', JSON.stringify(quantities));
+}
+
+    function restoreQuantity() {
+        const storedQuantities = JSON.parse(localStorage.getItem('quantities'));
+        const storedTotal = JSON.parse(localStorage.getItem('total'));
+
+        if (storedQuantities) {
+            quantityInputs.forEach((input) => {
+                const productId = input.name.split('_')[1];
+                const storedQuantity = storedQuantities.find((quantity) => quantity.productId === productId);
+                if (storedQuantity) {
+                    input.value = storedQuantity.quantity;
+                }
+            });
+        }
+
+        if (storedTotal) {
+            total = storedTotal;
+
+            let totalPrice = 0;
+
+            totalElements.forEach((element, index) => {
+                const price = parseFloat(priceElements[index].innerText.replace('đ', ''));
+                const quantity = parseInt(quantityInputs[index].value);
+                const productTotalPrice = quantity * price;
+                element.innerText = productTotalPrice + 'đ';
+
+                totalPrice += productTotalPrice;
+            });
+
+            total = totalPrice;
+
+            totalAmountElement.innerText = total + 'đ';
+            totalDivElement.innerText = total + 'đ';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        calculateTotal();
+        restoreQuantity();
+    });
+</script>

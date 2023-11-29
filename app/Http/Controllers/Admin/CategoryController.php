@@ -80,9 +80,8 @@ class CategoryController extends Controller
     // }
     public function delCategory($id)
     {
-       
         $deleteData = DB::table('categories')->where('id', '=', $id)->delete();
-        return view('admin.category.listcategory');
+        return back();
     }
     public function searchCategory(Request $request)
     {

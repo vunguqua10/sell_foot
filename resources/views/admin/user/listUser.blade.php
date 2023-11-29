@@ -10,7 +10,7 @@
   
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <form action="{{ route('searchcategory') }}" method="GET">
+      <form action="{{ route('user.searchUserAdmin') }}" method="GET">
         <div CLASS="input-group">
           @csrf
           <input type="text" name="keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -24,8 +24,8 @@
       <div class="container-fluid">
         <div class="row">
           <br><div class="col-sm-6">
-            <h1>Category</h1><br>
-            <h6><a href="{{route('category.addCategory')}}" class="btn btn-primary">ADD CATEGORY</a></h6>
+            <h1>User</h1><br>
+            <h6><a href="{{route('user.addUser')}}" class="btn btn-primary">ADD User</a></h6>
           </div>
         
         </div>
@@ -54,26 +54,26 @@
               <thead>
                   <tr>
                       <th style="width: 5%">ID</th>
-                      <th style="width: 5%">Name</th>
+                      <th style="width: 5%">UserName</th>
                       <th style="width: 5%">Action</th>
                   </tr>
               </thead>
               <tbody>
-                  @foreach($categories as $category)
+                  @foreach($users as $user)
                   <tr>
-                      <td>{{ $category -> id }}</td>
+                      <td>{{ $user -> id }}</td>
                       <td>
-                          <a>{{ $category -> cate_name }}</a>
+                          <a>{{ $user -> name }}</a>
                       </td>
                       <td class="project-actions">
-                          <a class="btn btn-info btn-sm" href="{{route('getdataedtcategory',$category->id)}}">
+                          <a class="btn btn-info btn-sm" href="">
                              
                             <i class="fas fa-pencil-alt">
                                 
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="{{ route('category.delCategory', $category->id ) }}">
+                          <a class="btn btn-danger btn-sm" href="{{route('user.deleteUser',$user->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
                               <i class="fas fa-trash">
                               </i>
                               Delete
@@ -83,6 +83,7 @@
                   @endforeach
               </tbody>
           </table>
+          {{ $users->links('custompagination') }}
           <div class=""><br>    
           </div>
         </div>

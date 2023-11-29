@@ -3,6 +3,7 @@
 <script src="https://kit.fontawesome.com/40a08ce033.js" crossorigin="anonymous"></script>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <meta charset="utf-8">
@@ -12,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Freshshop - Ecommerce Bootstrap 4 HTML Template</title>
+    <title>SELL FOOT</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -67,7 +68,7 @@
                     <i CLASS="fas fa-search fa-sm"></i>
                     </button>
                      </form>
-                     
+
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
 
                         <li class="nav-item active"><a class="nav-link" href="{{route('home')}}">{{ __('label.home') }}</a></li>
@@ -78,9 +79,10 @@
                                 <li><a href="{{route('shop')}}">{{ __('label.sidebarshop') }}</a></li>
                                 <li><a href="{{route('shop_detail')}}">{{ __('label.shopdetail') }}</a></li>
                                 <li><a href="{{route('cart')}}">{{ __('label.cart') }}</a></li>
-                                <li><a href="{{route('check_out')}}">{{ __('label.checkout') }}</a></li>
+                                <li><a href="{{route('checkout.index')}}">{{ __('label.checkout') }}</a></li>
                                 <li><a href="{{route('my_account')}}">{{ __('label.myaccount') }}</a></li>
                                 <li><a href="{{route('wishlist')}}">{{ __('label.wishlist') }}</a></li>
+                                <li><a href="{{route('history_payment')}}">History Payment</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{route('gallery')}}">{{ __('label.gallery') }}</a></li>
@@ -92,7 +94,6 @@
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-
                         <li class="side-menu">
                             <a href="#">
                                 <i class="fa fa-shopping-bag"></i>
@@ -110,7 +111,7 @@
             <span>{{ __('label.language') }}<i class="arrow_carrot-down"></i></span>
             <ul>
                 <li><a class="active" href="{{ route('change-language', 'en') }}">EngLish</a></li>
-                <li><a href="{{ route('change-language', 'vi') }}">Tiếng Việt</a></li>
+                <li><a class="active" href="{{ route('change-language', 'vi') }}">Tiếng Việt</a></li>
             </ul>
         </div>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -124,7 +125,7 @@
                     </li>
                     @else
                     <li class="nav-item">
-                        <a class="nav-link-logout" href="{{ route('signout') }}">Logout</a>
+                        <a class="nav-link-logout " href="{{ route('signout') }}"><i class="fa-solid fa-right-from-bracket"></i></a>
                     </li>
                     @endguest
                 </ul>

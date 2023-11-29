@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Thêm danh mục Sản Phẩm</h1>
+            <h1>ADD CATEGORY</h1>
           </div>
          
         </div>
@@ -25,8 +25,8 @@
             <div class="card card-primary">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="inputName">Nhập tên danh mục</label>
-                  <input type="text" name="cate_name" id="inputName" class="form-control" placeholder="Nhập tên loại">
+                  <label for="inputName">Category name</label>
+                  <input type="text" name="cate_name" id="inputName" class="form-control" placeholder="Input category name">
                   @if($errors->has('cate_name'))
                     {{$errors->first('cate_name') }}
                   @endif
@@ -39,7 +39,7 @@
         </div>
         <div class="row p-1">
           <div class="col-12">
-            <input type="submit" value="Create new Protype" class="btn btn-success float-right" >
+            <input type="submit" value="Add Category" class="btn btn-success float-right" >
           </div>
         </div>
     </form>

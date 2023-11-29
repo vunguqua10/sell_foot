@@ -31,14 +31,14 @@
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<div class="wrapper wrap-admin">
 
   <!-- Navbar -->
  @include('admin.layout.head')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4 nav-admin">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="/template/admin/dist/img/logo.png" alt="Logo" class="brand-image image-logo  elevation-3" style="opacity: .8">
@@ -49,82 +49,74 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image-logo">
-          <img src="/images/admin.jpg" class="img-circle logo-admin" alt="User Image">
-        </div>
         <div class="info">
        <a href="#" class="d-block"><br>Admin</a>
         </div>
       </div>
 
 
-      {{-- <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div> --}}
-
-      <!-- Sidebar Menu -->
+    
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('admin.index')}}" class="nav-link">
-                  <i class="far  nav-icon"></i>
+                  <i class="far nav-icon "></i>
                   <p>Home</p>
                 </a>
               </li>
           
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('category.listCategory')}}" class="nav-link ">
                   <i class="far  nav-icon"></i>
                   <p>All Category</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('category.addCategory')}}" class="nav-link">
                   <i class="far  nav-icon"></i>
                   <p>ADD Category</p>
                 </a>
               </li>
               
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('product.listProduct')}}" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>All Product</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('product.addProduct')}}" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>ADD Product</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('listvoucher')}}" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>Voucher</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item buttom-nav">
                 <a href="{{route('addvoucher')}}" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>ADD Voucher</p>
                 </a>
               </li>
-              <li class="nav-item">
-                 <a href="#" class="nav-link"> 
+              
+              <li class="nav-item buttom-nav">
+                 <a href="{{route('user.listUser')}}" class="nav-link"> 
                   <i class="far nav-icon"></i>
-                  <p>Danh sach don hang</p>
+                  <p>User</p>
+                </a>
+              </li>
+              <li class="nav-item buttom-nav">
+                <a href="{{route('orders')}}" class="nav-link"> 
+                  <i class="far nav-icon"></i>
+                  <p>List Oders</p>
                 </a>
               </li>
           </li>

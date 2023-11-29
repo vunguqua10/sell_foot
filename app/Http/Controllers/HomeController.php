@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Category;
 use App\Models\Product;
 use DB;
 use Illuminate\Http\Request;
@@ -32,9 +33,46 @@ class HomeController extends Controller
     }
     public function shop()
     {
-        App::setLocale(session()->get('locale'));
-        $products = Product::paginate(6);
-        return view('shop.shop', ['products' => $products]);
+        $categories = Category::pluck('cate_name', 'id');
+        $products = Product::select('name', 'instock', 'sold', 'id_category')->get();
+
+        $productsPaginated = Product::paginate(6);
+        if (!$categories || !$products || !$productsPaginated) {
+            abort(500, 'Có lỗi xảy ra trong quá trình tải trang.');
+        }
+
+        $categoryTotalInstock = [];
+
+        foreach ($categories as $categoryId => $categoryName) {
+            $instock = 0;
+            $sold = 0;
+            $hasProducts = false;
+
+            foreach ($products as $product) {
+                if ($product->id_category == $categoryId) {
+                    $instock += $product->instock - $product->sold;
+                    $sold += $product->sold;
+                    if ($instock < 0) {
+                        $instock = 0;
+                    }
+
+                    if ($instock == 0) {
+                        $product->outOfStock = true;
+                    } else {
+                        $product->outOfStock = false;
+                    }
+                    $hasProducts = true;
+                }
+            }
+
+            if ($hasProducts) {
+                $categoryTotalInstock[$categoryId] = $instock;
+            } else {
+                $categoryTotalInstock[$categoryId] = 0;
+            }
+        }
+
+        return view('shop.shop', compact('categories', 'products', 'productsPaginated', 'categoryTotalInstock'));
     }
     public function shopDetail()
     {
@@ -81,11 +119,15 @@ class HomeController extends Controller
     {
         // $hotproduct = DB::table('products')->orderBy('created_at', 'asc')->limit(4)->get();
         // $bestseller = DB::table('products')->orderBy('sold', 'desc')->limit(4)->get();
-        
+
         App::setLocale(session()->get('locale'));
         $hotproduct = DB::table('products')->orderBy('created_at', 'asc')->limit(4)->get();
         $bestseller = DB::table('products')->orderBy('sold', 'desc')->limit(4)->get();
         $topfeatured = DB::table('products')->orderBy('id', 'desc')->limit(4)->get();
         return view('home.index', compact('hotproduct', 'bestseller', 'topfeatured'));
+    }
+    public function historyPayment()
+    {
+        return view('cart.history_payment');
     }
 }

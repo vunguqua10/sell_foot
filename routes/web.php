@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\CheckoutController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\CustomProductsController;
 use App\Http\Controllers\HomeController;
@@ -11,7 +12,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LangController;
+use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +40,8 @@ Route::get('my_account',[HomeController::class,'myAccount'])->name('my_account')
 Route::get('wishlist',[HomeController::class,'wishList'])->name('wishlist');
 Route::get('gallery',[HomeController::class,'gallery'])->name('gallery');
 Route::get('contact_us',[HomeController::class,'contactUs'])->name('contact_us');
+Route::get('history_payment', [HomeController::class,'historyPayment'])->name('history_payment');
+
 
 // Product
 Route::get('listproduct', [ProductController::class, 'listProduct'])->name('listproduct');
@@ -79,7 +84,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/addCategory',[CategoryController::class,'post_addCategory'])->name('category.post_addCategory');
     Route::get('getdataedtcategory/id{id}', [CategoryController::class, 'editCategory'])->name('getdataedtcategory');
     Route::post('editcategory',[CategoryController::class,'updateCategory'])->name('editcategory');
-    Route::get('/delCategory-{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
+    Route::get('delCategory/id{id}',[CategoryController::class,'delCategory'])->name('category.delCategory');
 
     Route::get('/getcategories', [CategoryController::class, 'getCategories'])->name('getcategories');
 
@@ -90,6 +95,18 @@ Route::prefix('admin')->group(function () {
     Route::get('/addProduct',[ProductController::class,'addProduct'])->name('product.addProduct');
     Route::post('/addProduct',[ProductController::class,'post_addProduct'])->name('product.post_addProduct');
     Route::get('/search_product', [ProductController::class, 'searchProduct_admin'])->name('product.searchProductAdmin');
+
+    Route::get('/order',[OrderController::class,'orders'])->name('orders');
+    Route::get('/editOrder-{id}',[OrderController::class,'editOrder'])->name('editOrder');
+    Route::post('/editOrder-{id}',[OrderController::class,'post_editOrder'])->name('editOrder');
+    Route::get('/order-del-{id}',[OrderController::class,'deleteorder'])->name('del_order');
+    //user
+    Route::get('/listUser',[UserController::class,'listUser'])->name('user.listUser');
+    Route::get('/addUser',[UserController::class,'addUser'])->name('user.addUser');
+    Route::post('/addUser',[UserController::class,'post_addUser'])->name('postuser.addUser');
+    Route::get('/searchUserAdmin', [UserController::class, 'searchUserAdmin'])->name('user.searchUserAdmin');
+    Route::post('updateUser',[UserController::class,'updateUser'])->name('updateUser');
+    Route::get('/deleteUser-{id}',[UserController::class,'deleteUser'])->name('user.deleteUser');
 });
 
 //Cart
@@ -97,7 +114,7 @@ Route::get('/cart', [CartController::class, 'getAllProductsInCart'])->name('cart
 Route::get('add-to-cart/{id}', [CartController::class, 'addProductToCart'])->name('add-to-cart');
 Route::get('remove-from-cart/{id}', [CartController::class, 'removeProductFromCart'])->name('remove-from-cart');
 Route::get('clear-cart', [CartController::class, 'clearCart'])->name('clear-cart');
-Route::get('update-cart', [CartController::class, 'updateCart'])->name('update-cart');
+Route::post('/update-cart', [CartController::class,'updateCart'])->name('update-cart');
 //--------
 Route::get('useVoucher', [CartController::class, 'useVoucher'])->name('useVoucher');
 
@@ -122,8 +139,12 @@ Route::get('searchvoucher', [VoucherController::class, 'searchVoucher'])->name('
 
 
 //ViewDetail
-
 Route::get('view-detail/{id}', [CustomProductsController::class,'viewDetailProducts'])->name('show_detail');
+
+//Checkout
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout/{id}', [CheckoutController::class, 'store'])->name('store');
 
 // Multilang
 Route::get('change-language/{language}', [LangController::class, 'changeLanguage'])->name('change-language');
