@@ -86,6 +86,7 @@ class CartController extends Controller
     }
     public function updateCart(Request $request)
     {
+        App::setLocale(session()->get('locale'));
         $id_user = Auth::user()->id;
         $productsInCart = DB::table('cart_details')->where('id_user', $id_user)->get();
 

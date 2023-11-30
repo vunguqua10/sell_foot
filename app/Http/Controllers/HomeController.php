@@ -23,10 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+       
         return view('home.index');
     }
     public function aboutUs()
     {
+        App::setLocale(session()->get('locale'));
         return view('about.about');
     }
     public function shop()
@@ -74,36 +76,43 @@ class HomeController extends Controller
     }
     public function shopDetail()
     {
+        App::setLocale(session()->get('locale'));
         return view('shop_detail.shop-detail');
     }
     public function cart()
     {
+        
         return view('cart.cart');
 
     }
 
     public function checkOut()
     {
+        App::setLocale(session()->get('locale'));
         return view('check_out.checkout');
     }
 
     public function myAccount()
     {
+        App::setLocale(session()->get('locale'));
         return view('my_account.my-account');
     }
 
     public function gallery()
     {
+        App::setLocale(session()->get('locale'));
         return view('gallery.gallery');
     }
 
     public function wishList()
     {
+        App::setLocale(session()->get('locale'));
         return view('wishlist.wishlist');
     }
 
     public function contactUs()
     {
+        App::setLocale(session()->get('locale'));
         return view('contact-us.contact-us');
     }
     public function getProductsForHome()
