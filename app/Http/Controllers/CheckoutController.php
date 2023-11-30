@@ -99,11 +99,55 @@ class CheckoutController extends Controller
             $paymentHistories[] = $paymentHistory;
         }
 
-        $productsPaginated = new LengthAwarePaginator($paymentHistories, count($paymentHistories), 2);
-        if (!$paymentHistories || !$productsPaginated) {
-            abort(500, 'Có lỗi xảy ra trong quá trình tải trang.');
-        }
-        return view('check_out.checkout_old', compact('user', 'billingAddresses', 'paymentHistories','productsPaginated'));
+
+        $paymentHistories = PaymentHistory::where('user_id', $user->id)->paginate(15);
+
+        return view('check_out.checkout_old', compact('user', 'billingAddresses', 'paymentHistories'));
     }
+    // public function destroy($id)
+    // {
+    //     $paymentHistory = PaymentHistory::find($id);
+
+    //     if (!$paymentHistory) {
+    //         return redirect()->back()->with('error', 'Không tìm thấy sản phẩm trong lịch sử thanh toán.');
+    //     }
+
+    //     if ($paymentHistory->condition) {
+    //         return redirect()->back()->with('error', 'Không thể xóa sản phẩm do điều kiện không đúng.');
+    //     }
+
+    //     $paymentHistory->delete();
+
+    //     return redirect()->back()->with('success', 'Sản phẩm đã được xóa khỏi lịch sử thanh toán.');
+    // }
+
+
+        public function checkProductExistence($id)
+        {
+            $paymentHistory = PaymentHistory::find($id);
+
+            if ($paymentHistory) {
+                return response()->json(['exists' => true]);
+            } else {
+                return response()->json(['exists' => false]);
+            }
+        }
+
+        public function destroy($id)
+        {
+            $paymentHistory = PaymentHistory::find($id);
+
+            if (!$paymentHistory) {
+                return redirect()->back()->with('error', 'Không tìm thấy sản phẩm trong lịch sử thanh toán.');
+            }
+
+            if ($paymentHistory->condition) {
+                return redirect()->back()->with('error', 'Không thể xóa sản phẩm do điều kiện không đúng.');
+            }
+
+            $paymentHistory->delete();
+
+            return redirect()->back()->with('success', 'Sản phẩm đã được xóa khỏi lịch sử thanh toán.');
+        }
 }
 

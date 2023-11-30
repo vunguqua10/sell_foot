@@ -116,7 +116,8 @@
                                     </div>
                                 </div>
                                 <hr class="mb-1">
-                                <button id="placeOrderBtn" type="submit" class="btn btn-primary" >Place Order</button>
+                                {{-- <button id="placeOrderBtn" type="submit" class="btn btn-primary" >Place Order</button> --}}
+                                <button id="placeOrderBtn" type="submit" class="btn btn-primary"{{ count($cartCheckout) === 0 ? ' disabled' : '' }}>Place Order</button>
                             </form>
                     </div>
                 </div>
