@@ -28,15 +28,15 @@ class ProductController extends Controller
     //Post thêm sản phâm lên:
     function post_addProduct(Request $request){
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|min:3',
             'description' => 'required',
-            'price' => 'required',
-            'instock' => 'required',
-            'sold' => 'required',
+            'price' => 'required|min:4|max:7|numeric',
+            'instock' => 'required|numeric',
+            'sold' => 'required|numeric',
             'id_category' => 'required',
             'photo' => 'required',
         ]);
-    
+        
         $file = $request->file('photo');
         $path = 'uploads';
         $fileName = $file->getClientOriginalName();
