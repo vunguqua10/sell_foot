@@ -114,7 +114,9 @@ session(['productsCart' => $productsCart]);
             </div>
         </div>
         @else
-        <p class="font-weight-bold" style="text-align: center">Không có sản phẩm</p>
+
+            <p class="font-weight-bold" style="text-align: center">Không có sản phẩm</p>
+
         @endunless
     </div>
 </section>
@@ -179,7 +181,7 @@ session(['productsCart' => $productsCart]);
         const productId = input.name.split('_')[1];
         const quantity = input.value;
 
-       
+
         if (isProductInCart(productId)) {
             return { productId, quantity };
         }

@@ -117,8 +117,8 @@ class HomeController extends Controller
         $topfeatured = DB::table('products')->orderBy('id', 'desc')->limit(4)->get();
         return view('home.index', compact('hotproduct', 'bestseller', 'topfeatured'));
     }
-    public function historyPayment()
-    {
-        return view('cart.history_payment');
-    }
+    // public function historyPayment()
+    // {
+    //     return view('cart.history_payment');
+    // }
 }

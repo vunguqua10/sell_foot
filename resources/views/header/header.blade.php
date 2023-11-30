@@ -67,7 +67,7 @@
                      <button CLASS="btn btn-primary" type="submit">
                     <i CLASS="fas fa-search fa-sm"></i>
                     </button>
-                     </form>
+                </form>
 
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
 
@@ -82,7 +82,10 @@
                                 <li><a href="{{route('checkout.index')}}">{{ __('label.checkout') }}</a></li>
                                 <li><a href="{{route('my_account')}}">{{ __('label.myaccount') }}</a></li>
                                 <li><a href="{{route('wishlist')}}">{{ __('label.wishlist') }}</a></li>
-                                <li><a href="{{route('history_payment')}}">History Payment</a></li>
+                                {{-- @php
+                                dd($paymentHistory->id);
+                                @endphp --}}
+                                <li><a href="{{ route('payment_history' ) }}">History Payment</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{route('gallery')}}">{{ __('label.gallery') }}</a></li>

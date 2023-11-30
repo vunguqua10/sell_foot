@@ -40,7 +40,7 @@ Route::get('my_account',[HomeController::class,'myAccount'])->name('my_account')
 Route::get('wishlist',[HomeController::class,'wishList'])->name('wishlist');
 Route::get('gallery',[HomeController::class,'gallery'])->name('gallery');
 Route::get('contact_us',[HomeController::class,'contactUs'])->name('contact_us');
-Route::get('history_payment', [HomeController::class,'historyPayment'])->name('history_payment');
+// Route::get('history_payment', [HomeController::class,'historyPayment'])->name('history_payment');
 
 
 // Product
@@ -142,10 +142,9 @@ Route::get('searchvoucher', [VoucherController::class, 'searchVoucher'])->name('
 Route::get('view-detail/{id}', [CustomProductsController::class,'viewDetailProducts'])->name('show_detail');
 
 //Checkout
-
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout/{id}', [CheckoutController::class, 'store'])->name('store');
-
+Route::get('payment-history', [CheckoutController::class, 'showPaymentHistory'])->name('payment_history');
 // Multilang
 Route::get('change-language/{language}', [LangController::class, 'changeLanguage'])->name('change-language');
 //---------

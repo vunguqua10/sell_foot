@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\BillingAddress;
 use App\Models\User;
+use App\Models\PaymentHistory;
 use Facade\FlareClient\Http\Client;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
@@ -25,17 +28,9 @@ class CheckoutController extends Controller
             'zip' => 'required|regex:/^\d{4}$/',
         ]);
 
-        // Tìm người dùng bằng ID
         $user = User::findOrFail($id);
-
-        // Điền thông tin địa chỉ thanh toán của người dùng
         $user->fill($validatedData);
         $user->save();
-
-        // Xử lý thanh toán (giả sử là COD - tiền mặt khi nhận hàng)
-        // Bạn có thể thêm logic xử lý thanh toán của riêng bạn ở đây
-
-        // Tính tổng số tiền đơn hàng cuối cùng
         $subtotal = 0;
         $cartCheckout = $request->session()->get('productsCart');
         foreach ($cartCheckout as $item) {
@@ -46,8 +41,9 @@ class CheckoutController extends Controller
         $couponDiscount = 10;
         $grandTotal = $subtotal - $discount - $couponDiscount;
 
-        // Lưu địa chỉ thanh toán vào cơ sở dữ liệu
+
         $billingAddress = new BillingAddress();
+        $billingAddress->user_id = $user->id;
         $billingAddress->first_name = $validatedData['firstName'];
         $billingAddress->last_name = $validatedData['lastName'];
         $billingAddress->username = $validatedData['username'];
@@ -62,10 +58,11 @@ class CheckoutController extends Controller
 
         $request->session()->forget('productsCart');
 
+        session(['paymentSuccess' => true]);
+
+
 
         return view('check_out.checkout', compact('user', 'cartCheckout', 'subtotal', 'discount', 'couponDiscount', 'grandTotal'));
-        // // Hiển thị trang xác nhận cho người dùng
-        // return view('check_out.checkout', compact('user', 'cartCheckout', 'subtotal', 'discount', 'couponDiscount', 'grandTotal'));
     }
 
     public function index(Request $request)
@@ -80,7 +77,33 @@ class CheckoutController extends Controller
         $discount = 40;
         $couponDiscount = 10;
         $grandTotal = $subtotal - $discount - $couponDiscount;
+
         return view('check_out.checkout', compact('user', 'cartCheckout', 'subtotal', 'discount', 'couponDiscount', 'grandTotal'))->with('success', 'Thanh toán thành công!');
+    }
+    public function showPaymentHistory()
+    {
+        $user = auth()->user();
+        $billingAddresses = BillingAddress::where('user_id', $user->id)->get();
+
+        $paymentHistories = []; // Tạo một mảng để lưu lịch sử thanh toán
+
+        foreach ($billingAddresses as $billingAddress) {
+            $paymentHistory = new PaymentHistory();
+            $paymentHistory->user_id = $user->id;
+            $paymentHistory->username = $billingAddress->username;
+            $paymentHistory->payment_amount = $billingAddress->total_price;
+            $paymentHistory->payment_method = 'COD';
+            $paymentHistory->payment_date = $billingAddress->created_at;
+            $paymentHistory->save();
+
+            $paymentHistories[] = $paymentHistory;
+        }
+
+        $productsPaginated = new LengthAwarePaginator($paymentHistories, count($paymentHistories), 2);
+        if (!$paymentHistories || !$productsPaginated) {
+            abort(500, 'Có lỗi xảy ra trong quá trình tải trang.');
+        }
+        return view('check_out.checkout_old', compact('user', 'billingAddresses', 'paymentHistories','productsPaginated'));
     }
 }
 
