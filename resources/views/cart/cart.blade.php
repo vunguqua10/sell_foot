@@ -22,6 +22,7 @@ session(['productsCart' => $productsCart]);
     <!-- Start Cart  -->
     <section class="shopping-cart spad">
     <div class="cart-box-main">
+        @unless($productsCart->isEmpty())
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -34,7 +35,7 @@ session(['productsCart' => $productsCart]);
                                             <th>{{ __('label.images') }}</th>
                                             <th>{{ __('label.product') }}</th>
                                             <th>{{ __('label.price') }}</th>
-                                            <th>{{ __('label.quanlity') }}</th>
+                                            <th>{{ __('label.quantity') }}</th>
                                             <th>{{ __('label.total') }}</th>
                                             <th>{{ __('label.remove') }}</th>
                                         </tr>
@@ -57,7 +58,7 @@ session(['productsCart' => $productsCart]);
                                                     <p>{{$productCart->price}}đ</p>
                                                 </td>
                                                 <td class="quantity-box" data-product-id="{{$productCart->id}}">
-                                                    <input type="number" size="4" value="{{$productCart->quantity}}" min="1" step="1" class="c-input-text qty text quantity-input" name="quantity_{{$productCart->id}}">
+                                                    <input type="number" size="4" value="{{$productCart->quantity}}" min="1" max="20" step="1" class="c-input-text qty text quantity-input" name="quantity_{{$productCart->id}}">
                                                 </td>
                                                 <td class="total-pr">
                                                     <p>{{$productCart->totalPrice}}đ</p>
@@ -74,6 +75,7 @@ session(['productsCart' => $productsCart]);
 
                                             @endforeach
                                     </tbody>
+
                             </table>
                         </div>
                     </form>
@@ -108,11 +110,14 @@ session(['productsCart' => $productsCart]);
                     </div>
                 </div>
                 {{-- @php dd($id_user); @endphp --}}
-                <div class="col-12 d-flex shopping-box"><a href="{{ route('checkout',$id_user) }}" class="ml-auto btn hvr-hover">{{ __('label.checkout') }}</a> </div>
-
+                <div class="col-12 d-flex shopping-box"><a href="{{ route('checkout.index') }}" class="ml-auto btn hvr-hover">{{ __('label.checkout') }}</a> </div>
             </div>
-
         </div>
+        @else
+
+            <p class="font-weight-bold" style="text-align: center">Không có sản phẩm</p>
+
+        @endunless
     </div>
 </section>
     <!-- End Cart -->
@@ -176,7 +181,7 @@ session(['productsCart' => $productsCart]);
         const productId = input.name.split('_')[1];
         const quantity = input.value;
 
-        // Kiểm tra nếu sản phẩm tồn tại trong giỏ hàng mới lưu trữ số lượng
+
         if (isProductInCart(productId)) {
             return { productId, quantity };
         }

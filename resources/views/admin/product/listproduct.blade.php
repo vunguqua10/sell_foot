@@ -3,21 +3,21 @@
 @section('main-content')
 <div class="content-wrapper">
 <section class="content-header">
-  {{-- <form action="{{ route('product.searchProductAdmin') }}" method="GET">
-    <div CLASS="input-group">
-      @csrf
-      <input type="text" name="keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-      <div CLASS="input-group-append">
-        <button CLASS="btn btn-primary" type="submit">
-          <i CLASS="fas fa-search fa-sm"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</form> --}}
+  
 <!-- DataTales Example -->
 <div CLASS="card shadow mb-12">
   <div CLASS="card-header py-3">
+  <form action="{{ route('product.searchProductAdmin') }}" method="GET">
+        <div CLASS="input-group">
+          @csrf
+          <input type="text" name="keyword" CLASS="form-control bg-light border-2 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div CLASS="input-group-append">
+            <button CLASS="btn btn-primary" type="submit">
+              <i CLASS="fas fa-search fa-sm"></i>
+            </button>
+          </div>
+        </div>
+        </form><br>
     <h6 CLASS="m-0 font-weight-bold text-primary">PRODUCT </h6>
     <h6><a href="{{route('addproduct')}}" class="btn btn-primary">ADD PRODUCT</a></h6>
   </div>

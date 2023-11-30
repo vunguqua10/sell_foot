@@ -42,7 +42,7 @@ Route::get('my_account',[HomeController::class,'myAccount'])->name('my_account')
 Route::get('wishlist',[HomeController::class,'wishList'])->name('wishlist');
 Route::get('gallery',[HomeController::class,'gallery'])->name('gallery');
 Route::get('contact_us',[HomeController::class,'contactUs'])->name('contact_us');
-Route::get('history_payment', [HomeController::class,'historyPayment'])->name('history_payment');
+// Route::get('history_payment', [HomeController::class,'historyPayment'])->name('history_payment');
 
 
 // Product
@@ -112,8 +112,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/listUser',[UserController::class,'listUser'])->name('user.listUser');
     Route::get('/addUser',[UserController::class,'addUser'])->name('user.addUser');
     Route::post('/addUser',[UserController::class,'post_addUser'])->name('postuser.addUser');
+    Route::post('customUser', [UserController::class, 'customUser'])->name('customUser.custom');
     Route::get('/searchUserAdmin', [UserController::class, 'searchUserAdmin'])->name('user.searchUserAdmin');
-    Route::post('updateUser',[UserController::class,'updateUser'])->name('updateUser');
+    Route::get('getdataedtuser/id{id}', [UserController::class, 'editUser'])->name('getdataedtuser');
+    Route::post('edituser', [UserController::class, 'updateUser'])->name('edituser');
     Route::get('/deleteUser-{id}',[UserController::class,'deleteUser'])->name('user.deleteUser');
 });
 
@@ -150,10 +152,13 @@ Route::get('searchvoucher', [VoucherController::class, 'searchVoucher'])->name('
 Route::get('view-detail/{id}', [CustomProductsController::class,'viewDetailProducts'])->name('show_detail');
 
 //Checkout
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout/{id}', [CheckoutController::class, 'store'])->name('store');
+Route::get('payment-history', [CheckoutController::class, 'showPaymentHistory'])->name('payment_history');
 
-Route::get('checkout/{user_id}', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('checkout/{user_id}', [CheckoutController::class, 'store'])->name('store');
+Route::delete('/payment-history/{id}', [CheckoutController::class, 'destroy'])->name('payment-history.destroy');
 
+Route::get('/payment-history/check-existence/{id}', [CheckoutController::class, 'checkProductExistence']);
 // Multilang
 Route::get('change-language/{language}', [LangController::class, 'changeLanguage'])->name('change-language');
 //---------

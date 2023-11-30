@@ -1,6 +1,6 @@
 @include('header.header')
 @php
-    session(['products' => $products]);
+    // session(['products' => $products]);
 @endphp
     <!-- Start All Title Box -->
     <div class="all-title-box">
@@ -69,7 +69,7 @@
 
                                     <div class="price-box-bar">
                                         <div class="cart-and-bay-btn">
-                                            <a class="btn hvr-hover" data-fancybox-close="" href="{{route('check_out')}}">Buy New</a>
+                                            <a class="btn hvr-hover" data-fancybox-close="" href="">Buy New</a>
                                             <a class="btn hvr-hover" id="addToCartButton" data-fancybox-close="" href="{{ route('add-to-cart',$products->id) }}">Add to cart</a>
                                         </div>
                                     </div>

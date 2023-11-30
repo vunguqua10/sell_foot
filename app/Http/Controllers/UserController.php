@@ -25,49 +25,67 @@ class UserController extends Controller
     public function customUser(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'name' => 'required|unique:users|min:3|max:12',
+            'email' => 'required|email|unique:users,email|min:6|max:20',
+            'password' => 'required|min:6',
         ]);
       
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = md5($request->input('password'));
-        $user->save();
+        $data = $request->all();
+        $check = $this->createUser($data);
     
-        return redirect("listUser");
+        return redirect('admin/listUser');
     }
     public function createUser(array $data)
     {
-        return Product::create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => $data['password'],
+            'password' => Hash::make($data['password']),
         ]);
     }
 
-    public function getDataEdit($id)
+    function editUser($id)
     {
         $getData = DB::table('users')->select('*')->where('id', $id)->get();
-        return view('admin.user.editUser', ['getDataUserById' => $getData]);
+        return view('admin.user.editUser')->with('getDataUserById', $getData);
     }
 
-    public function updateUser(Request $request, $id)
-    {
-    $request->validate([
-        'name' => 'required',
-        'email' => 'required',
-        'password' => 'required',
-    ]);
+//     public function updateUser(Request $request, $id)
+//     {
+//     $request->validate([
+//         'name' => 'required',
+//         'email' => 'required|email|unique:users',
+//         'password' => 'required|min:6',
+//     ]);
 
-    $user = User::find($id);
-    $user->name = $request->input('name');
-    $user->email = $request->input('email');
-    $user->password = md5($request->input('password'));
+//     $data = $request->all();
+//     $check = $this->createUser($data);
+//     $data->save();
+
+//     return redirect('admin/listUser');
+// }
+public function updateUser(Request $request)
+{
+   
+    $validatedData = $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email|min:6|max:20',
+        'password' => 'required|min:6',
+    ]);
+    $user = User::find($request->input('id'));
+    if (!$user) {
+        // Xử lý khi không tìm thấy người dùng
+        return redirect()->route('user.listUser')->with('error', 'Không tìm thấy người dùng');
+    }
+    $user = User::find($request->id);
+   
+   
+    $user->email = $request->email;
+    $user->password = Hash::make($request->password);
     $user->save();
 
-    return redirect("listUser");
+    return redirect()->route('user.listUser')->with('success', 'Cập nhật người dùng thành công');
+   
 }
 
 
