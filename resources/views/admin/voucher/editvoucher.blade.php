@@ -32,7 +32,15 @@
                                 <input type="text" placeholder="Gia tri giam" id="reduce" value="{{$getDataVoucherById[0]->reduce}}" class="form-control" name="reduce" required autofocus>
                                
                             </div>
-
+                            @error('expireddate')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                @error('reduce')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                @error('code_voucher')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             <div class="d-grid mx-auto">
                                 <button type="submit" class="btn btn-dark btn-block">EDIT</button>
                             </div>

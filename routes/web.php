@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ContactController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +54,10 @@ Route::post('editproduct', [ProductController::class, 'updateProduct'])->name('e
 Route::get('deleteproduct/id{id}', [ProductController::class, 'deleteProduct'])->name('deleteproduct');
 Route::get('searchproduct', [ProductController::class, 'searchProduct'])->name('searchproduct');
 Route::get('getproduct', [ProductController::class, 'getProduct'])->name('getproduct');
+Route::get('/gallery', [ProductController::class, 'gallery'])->name('gallery');
+
+
+
 //--------------
 
 //Product Admin
@@ -89,6 +95,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/getcategories', [CategoryController::class, 'getCategories'])->name('getcategories');
 
     Route::get('/searchcategory', [CategoryController::class, 'searchCategory'])->name('searchcategory');
+
+
 
     //product
     Route::get('/listProduct',[ProductController::class,'listProduct'])->name('product.listProduct');
@@ -149,3 +157,11 @@ Route::post('checkout/{user_id}', [CheckoutController::class, 'store'])->name('s
 // Multilang
 Route::get('change-language/{language}', [LangController::class, 'changeLanguage'])->name('change-language');
 //---------
+// Contact-us
+Route::post('/contact-us', [ContactController::class, 'store'])->name('contactus.store');
+Route::get('/listcontact', [ContactController::class, 'allcontact'])->name('allcontact');
+Route::get('deletecontact/id{id}', [ContactController::class, 'deleteContact'])->name('deletecontact');
+
+
+
+
