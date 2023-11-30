@@ -119,6 +119,12 @@
                   <p>List Oders</p>
                 </a>
               </li>
+              <li class="nav-item buttom-nav">
+                <a href="{{route('allcontact')}}" class="nav-link"> 
+                  <i class="far nav-icon"></i>
+                  <p>Contact us</p>
+                </a>
+              </li>
           </li>
           {{-- <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">

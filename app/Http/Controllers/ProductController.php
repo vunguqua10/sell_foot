@@ -120,5 +120,9 @@ class ProductController extends Controller
         $products = Product::where('name', 'LIKE', '%' . $keyword . '%')->paginate(4);
         return view('admin.product.listproduct', compact('products'));
     }
-      
+    public function gallery()
+    {
+        $products = Product::all();
+        return view('gallery/gallery', compact('products'));
+    }
 }

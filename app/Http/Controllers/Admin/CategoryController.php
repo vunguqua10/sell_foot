@@ -89,4 +89,11 @@ class CategoryController extends Controller
         $categories = Category::where('cate_name', 'LIKE', '%' . $keyword . '%')->paginate(5);
         return view('admin.category.listcategory', compact('categories'));
     }
+    public function showCategories()
+    {
+        $categories = Category::all();
+        return view('gallery/gallery', compact('categories'));
+    }
+
+
 }
