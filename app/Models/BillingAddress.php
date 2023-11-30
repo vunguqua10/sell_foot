@@ -9,6 +9,7 @@ class BillingAddress extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'first_name',
         'last_name',
         'username',
@@ -21,4 +22,8 @@ class BillingAddress extends Model
         'zip',
         'total_price',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

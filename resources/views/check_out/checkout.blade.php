@@ -55,19 +55,19 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="firstName">First name *</label>
-                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="{{$user->firt_name}}" required>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="{{$user->firt_name}}" pattern="[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ]+( [aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ]+)*"  required>
                                         <div class="invalid-feedback"> Valid first name is required. </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="lastName">Last name *</label>
-                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="{{$user->last_name}}" required>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="{{$user->last_name}}" pattern="[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ]+( [aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ]+)*" required>
                                         <div class="invalid-feedback"> Valid last name is required. </div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="username">Username *</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="" value="{{$user->username}}" required>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="" value="{{$user->username}}" pattern="[a-zA-Z0-9]+(\s[a-zA-Z0-9]+)*$" required>
                                         <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
                                     </div>
                                 </div>
@@ -128,9 +128,9 @@
                                     <h3>Shopping cart</h3>
                                 </div>
                                 <div class="rounded p-2 bg-light">
-                                    @if ($cartCheckout->count() > 0)
+                                    @if (isset($cartCheckout) && count($cartCheckout) > 0)
                                         @foreach($cartCheckout as $item)
-                                            <div class="media mb-2 border-bottom">
+                                            <div class="media mb-2 border-bottom ">
                                                 <div class="media-body">
                                                     <a href="{{ route('show_detail', $item->id) }}">{{ $item->name }}</a>
                                                     <div class="small text-muted">
@@ -165,17 +165,17 @@
                                     </div>
                                     <div class="d-flex">
                                         <h4>Discount</h4>
-                                        <div class="ml-auto font-weight-bold">$ 40</div>
+                                        <div class="ml-auto font-weight-bold">40đ</div>
                                     </div>
                                     <hr class="my-1">
                                     <div class="d-flex">
                                         <h4>Coupon Discount</h4>
-                                        <div class="ml-auto font-weight-bold">$ 10</div>
+                                        <div class="ml-auto font-weight-bold">10đ</div>
                                     </div>
                                     <hr>
                                     <div class="d-flex gr-total">
                                         <h5>Grand Total</h5>
-                                        <div class="ml-auto h5">${{$grandTotal}}</div>
+                                        <div class="ml-auto h5">{{$grandTotal}}đ</div>
                                     </div>
                                     <hr>
                                 @else
@@ -196,13 +196,14 @@
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        var selectedProducts = document.querySelectorAll('input[type="checkbox"]:checked');
-
-        if (selectedProducts.length === 0) {
-            var errorContainer = document.querySelector('.invalid-feedback');
-            errorContainer.innerHTML = 'Please select at least one product.';
-            errorContainer.style.display = 'block';
-        } else if (form.checkValidity() === false) {
+        // var cartItemCount = parseInt(document.getElementById('cartItemCount').innerHTML);
+        // if (cartItemCount === 0) {
+        //     event.preventDefault();
+        //     var errorContainer = document.querySelector('.errorContainer');
+        //     errorContainer.innerHTML = 'Please select at least one product.';
+        //     errorContainer.style.display = 'block';
+        // } else
+        if (form.checkValidity() === false) {
             var errorContainer = document.getElementById('errorContainer');
             errorContainer.innerHTML = 'Please fill in all required fields.';
             errorContainer.style.display = 'block';
@@ -213,6 +214,7 @@
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     alert("Order placed successfully!");
+                    window.location.href = window.location.href;
                 } else {
                     alert("Order placement failed!");
                 }
@@ -222,4 +224,12 @@
 
         form.classList.add('was-validated');
     });
+    var cartItemCount = document.getElementsByClassName('media').length;
+
+        if (cartItemCount === 0) {
+            event.preventDefault();
+            var errorContainer = document.querySelector('.errorContainer');
+            errorContainer.innerHTML = 'Please select at least one product.';
+            errorContainer.style.display = 'block';
+        }
 </script>
