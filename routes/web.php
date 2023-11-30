@@ -147,6 +147,10 @@ Route::get('view-detail/{id}', [CustomProductsController::class,'viewDetailProdu
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout/{id}', [CheckoutController::class, 'store'])->name('store');
 Route::get('payment-history', [CheckoutController::class, 'showPaymentHistory'])->name('payment_history');
+
+Route::delete('/payment-history/{id}', [CheckoutController::class, 'destroy'])->name('payment-history.destroy');
+
+Route::get('/payment-history/check-existence/{id}', [CheckoutController::class, 'checkProductExistence']);
 // Multilang
 Route::get('change-language/{language}', [LangController::class, 'changeLanguage'])->name('change-language');
 //---------
