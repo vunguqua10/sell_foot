@@ -69,17 +69,18 @@ class ProductController extends Controller
 
     public function getDataEdit($id)
     {
-        $getData = DB::table('products')->select('*')->where('id', $id)->get();
+        $product = DB::table('products')->find($id);
+
+        if (!$product) {
+            return redirect()->route('listproduct')->with('error', 'Product not found.');
+        }
+
         $categories = DB::table('categories')->select('*')->get();
-        return view('admin.product.editproduct', ['getDataProductById' => $getData, 'categories' => $categories]);
+        return view('admin.product.editproduct', ['getDataProductById' => $product, 'categories' => $categories]);
     }
 
     public function updateProduct(Request $request)
     {
-        $file = $request->file('photo');
-        $path = 'images';
-        $fileName = $file->getClientOriginalName();
-        $file->move($path, $fileName);
 
         $updateData = DB::table('products')->where('id', $request->id)->update([
             'name' => $request->name,
@@ -88,7 +89,6 @@ class ProductController extends Controller
             'instock' => $request->instock,
             'sold' => $request->sold,
             'id_category' => $request->id_category,
-            'photo' => $fileName,
         ]);
         //Thực hiện chuyển trang
         return redirect('listproduct');

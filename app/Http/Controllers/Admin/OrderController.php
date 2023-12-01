@@ -21,6 +21,14 @@ function editOrder($id)
 {
    $orderbyid = Order::find($id);
    return view('admin.order.editorder',['orderbyid'=>$orderbyid]);
+
+   $orderbyid = DB::table('order')->find($id);
+
+        if (!$order) {
+            return redirect()->route('listorder')->with('error', 'Order not found.');
+        }
+
+        return view('admin.order.editorder', ['orderbyid' => $orderbyid]);
 }
 //Post sửa trạng thái đơn hàng lên:
 function post_editOrder($id,Request $request){
@@ -29,7 +37,7 @@ function post_editOrder($id,Request $request){
     ],['status.required' => 'Trạng thái không được để trống']);
     $request -> offsetUnset('_token');
     Order::where(['id'=>$id])->update($request->all());
-    return redirect()->route('orders')->with('success','Sửa trạng thái thành công');
+    return redirect()->route('orders')->with('success','');
 }
 //Xóa đơn hàng
 function deleteorder($id){
