@@ -85,22 +85,30 @@ class CheckoutController extends Controller
         $user = auth()->user();
         $billingAddresses = BillingAddress::where('user_id', $user->id)->get();
 
-        $paymentHistories = []; // Tạo một mảng để lưu lịch sử thanh toán
+        $existingPaymentHistories = $user->paymentHistories()->pluck('username')->toArray();
 
         foreach ($billingAddresses as $billingAddress) {
-            $paymentHistory = new PaymentHistory();
-            $paymentHistory->user_id = $user->id;
-            $paymentHistory->username = $billingAddress->username;
-            $paymentHistory->payment_amount = $billingAddress->total_price;
-            $paymentHistory->payment_method = 'COD';
-            $paymentHistory->payment_date = $billingAddress->created_at;
-            $paymentHistory->save();
+            if (!in_array($billingAddress->username, $existingPaymentHistories)) {
+                $paymentHistory = PaymentHistory::where('user_id', $user->id)
+                    ->where('username', $billingAddress->username)
+                    ->first();
 
-            $paymentHistories[] = $paymentHistory;
+                if (!$paymentHistory) {
+                    $paymentHistory = new PaymentHistory();
+                    $paymentHistory->user_id = $user->id;
+                    $paymentHistory->username = $billingAddress->username;
+                    $paymentHistory->payment_amount = $billingAddress->total_price;
+                    $paymentHistory->payment_method = 'COD';
+                    $paymentHistory->payment_date = $billingAddress->created_at;
+                    $paymentHistory->save();
+                }
+            }
         }
 
 
-        $paymentHistories = PaymentHistory::where('user_id', $user->id)->paginate(15);
+        $paymentHistories = $user->paymentHistories()
+        ->orderByDesc('id')
+        ->paginate(15);
 
         return view('check_out.checkout_old', compact('user', 'billingAddresses', 'paymentHistories'));
     }
@@ -141,13 +149,17 @@ class CheckoutController extends Controller
                 return redirect()->back()->with('error', 'Không tìm thấy sản phẩm trong lịch sử thanh toán.');
             }
 
-            if ($paymentHistory->condition) {
-                return redirect()->back()->with('error', 'Không thể xóa sản phẩm do điều kiện không đúng.');
+            $billingAddress = $paymentHistory->billingAddress;
+
+            if ($billingAddress) {
+                // Xóa bản ghi trong bảng billingaddress liên quan đến payment_history
+                $billingAddress->delete();
             }
 
+            // Xóa bản ghi trong bảng payment_history
             $paymentHistory->delete();
 
-            return redirect()->back()->with('success', 'Sản phẩm đã được xóa khỏi lịch sử thanh toán.');
+            return redirect()->back()->with('success', 'Sản phẩm đã được xóa khỏi lịch sử thanh toán và địa chỉ thanh toán.');
         }
 }
 
